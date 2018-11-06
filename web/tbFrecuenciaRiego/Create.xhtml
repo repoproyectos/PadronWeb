@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbFrecuenciaRiegoCreateDlg" widgetVar="TbFrecuenciaRiegoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbFrecuenciaRiegoTitle}">
+            <h:form id="TbFrecuenciaRiegoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbFrecuenciaRiegoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbFrecuenciaRiegoLabel_idFrecuenciaRiego}" for="idFrecuenciaRiego" />
+                        <p:inputText id="idFrecuenciaRiego" value="#{tbFrecuenciaRiegoController.selected.idFrecuenciaRiego}" title="#{bundle.CreateTbFrecuenciaRiegoTitle_idFrecuenciaRiego}" required="true" requiredMessage="#{bundle.CreateTbFrecuenciaRiegoRequiredMessage_idFrecuenciaRiego}"/>
+                        <p:outputLabel value="#{bundle.CreateTbFrecuenciaRiegoLabel_tipoFrecuencia}" for="tipoFrecuencia" />
+                        <p:inputText id="tipoFrecuencia" value="#{tbFrecuenciaRiegoController.selected.tipoFrecuencia}" title="#{bundle.CreateTbFrecuenciaRiegoTitle_tipoFrecuencia}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbFrecuenciaRiegoController.create}" value="#{bundle.Save}" update="display,:TbFrecuenciaRiegoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbFrecuenciaRiegoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbFrecuenciaRiegoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

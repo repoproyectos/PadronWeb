@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbDatosPersonalesCreateDlg" widgetVar="TbDatosPersonalesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbDatosPersonalesTitle}">
+            <h:form id="TbDatosPersonalesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbDatosPersonalesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_idDatosPersonales}" for="idDatosPersonales" />
+                        <p:inputText id="idDatosPersonales" value="#{tbDatosPersonalesController.selected.idDatosPersonales}" title="#{bundle.CreateTbDatosPersonalesTitle_idDatosPersonales}" required="true" requiredMessage="#{bundle.CreateTbDatosPersonalesRequiredMessage_idDatosPersonales}"/>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{tbDatosPersonalesController.selected.cedula}" title="#{bundle.CreateTbDatosPersonalesTitle_cedula}" required="true" requiredMessage="#{bundle.CreateTbDatosPersonalesRequiredMessage_cedula}"/>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{tbDatosPersonalesController.selected.apellidos}" title="#{bundle.CreateTbDatosPersonalesTitle_apellidos}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{tbDatosPersonalesController.selected.nombres}" title="#{bundle.CreateTbDatosPersonalesTitle_nombres}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_edad}" for="edad" />
+                        <p:inputText id="edad" value="#{tbDatosPersonalesController.selected.edad}" title="#{bundle.CreateTbDatosPersonalesTitle_edad}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_numTelFijo}" for="numTelFijo" />
+                        <p:inputText id="numTelFijo" value="#{tbDatosPersonalesController.selected.numTelFijo}" title="#{bundle.CreateTbDatosPersonalesTitle_numTelFijo}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_numTelMovil}" for="numTelMovil" />
+                        <p:inputText id="numTelMovil" value="#{tbDatosPersonalesController.selected.numTelMovil}" title="#{bundle.CreateTbDatosPersonalesTitle_numTelMovil}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_jefeHogar}" for="jefeHogar" />
+                        <p:inputText id="jefeHogar" value="#{tbDatosPersonalesController.selected.jefeHogar}" title="#{bundle.CreateTbDatosPersonalesTitle_jefeHogar}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbDatosPersonalesController.selected.fechaReg}" title="#{bundle.EditTbDatosPersonalesTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_idActividadPrincipal}" for="idActividadPrincipal" />
+                        <p:selectOneMenu id="idActividadPrincipal" value="#{tbDatosPersonalesController.selected.idActividadPrincipal}" >
+                            <f:selectItems value="#{tbActividadPrincipalController.itemsAvailableSelectOne}"
+                                           var="idActividadPrincipalItem"
+                                           itemValue="#{idActividadPrincipalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_idComunidad}" for="idComunidad" />
+                        <p:selectOneMenu id="idComunidad" value="#{tbDatosPersonalesController.selected.idComunidad}" >
+                            <f:selectItems value="#{tbComunidadController.itemsAvailableSelectOne}"
+                                           var="idComunidadItem"
+                                           itemValue="#{idComunidadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_idDatosConyugue}" for="idDatosConyugue" />
+                        <p:selectOneMenu id="idDatosConyugue" value="#{tbDatosPersonalesController.selected.idDatosConyugue}" >
+                            <f:selectItems value="#{tbDatosConyugueController.itemsAvailableSelectOne}"
+                                           var="idDatosConyugueItem"
+                                           itemValue="#{idDatosConyugueItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_idEstadoCivil}" for="idEstadoCivil" />
+                        <p:selectOneMenu id="idEstadoCivil" value="#{tbDatosPersonalesController.selected.idEstadoCivil}" >
+                            <f:selectItems value="#{tbEstadoCivilController.itemsAvailableSelectOne}"
+                                           var="idEstadoCivilItem"
+                                           itemValue="#{idEstadoCivilItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_idNivelInstruccion}" for="idNivelInstruccion" />
+                        <p:selectOneMenu id="idNivelInstruccion" value="#{tbDatosPersonalesController.selected.idNivelInstruccion}" >
+                            <f:selectItems value="#{tbNivelInstruccionController.itemsAvailableSelectOne}"
+                                           var="idNivelInstruccionItem"
+                                           itemValue="#{idNivelInstruccionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_idSexo}" for="idSexo" />
+                        <p:selectOneMenu id="idSexo" value="#{tbDatosPersonalesController.selected.idSexo}" >
+                            <f:selectItems value="#{tbSexoController.itemsAvailableSelectOne}"
+                                           var="idSexoItem"
+                                           itemValue="#{idSexoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbDatosPersonalesController.create}" value="#{bundle.Save}" update="display,:TbDatosPersonalesListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbDatosPersonalesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbDatosPersonalesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

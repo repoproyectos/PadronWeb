@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbActividadPrincipalCreateDlg" widgetVar="TbActividadPrincipalCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbActividadPrincipalTitle}">
+            <h:form id="TbActividadPrincipalCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbActividadPrincipalController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbActividadPrincipalLabel_idActividadPrincipal}" for="idActividadPrincipal" />
+                        <p:inputText id="idActividadPrincipal" value="#{tbActividadPrincipalController.selected.idActividadPrincipal}" title="#{bundle.CreateTbActividadPrincipalTitle_idActividadPrincipal}" required="true" requiredMessage="#{bundle.CreateTbActividadPrincipalRequiredMessage_idActividadPrincipal}"/>
+                        <p:outputLabel value="#{bundle.CreateTbActividadPrincipalLabel_nomActividadPrincipal}" for="nomActividadPrincipal" />
+                        <p:inputText id="nomActividadPrincipal" value="#{tbActividadPrincipalController.selected.nomActividadPrincipal}" title="#{bundle.CreateTbActividadPrincipalTitle_nomActividadPrincipal}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbActividadPrincipalController.create}" value="#{bundle.Save}" update="display,:TbActividadPrincipalListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbActividadPrincipalCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbActividadPrincipalCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

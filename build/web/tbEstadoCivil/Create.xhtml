@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbEstadoCivilCreateDlg" widgetVar="TbEstadoCivilCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbEstadoCivilTitle}">
+            <h:form id="TbEstadoCivilCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbEstadoCivilController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbEstadoCivilLabel_idEstadoCivil}" for="idEstadoCivil" />
+                        <p:inputText id="idEstadoCivil" value="#{tbEstadoCivilController.selected.idEstadoCivil}" title="#{bundle.CreateTbEstadoCivilTitle_idEstadoCivil}" required="true" requiredMessage="#{bundle.CreateTbEstadoCivilRequiredMessage_idEstadoCivil}"/>
+                        <p:outputLabel value="#{bundle.CreateTbEstadoCivilLabel_tipoEstadoCivil}" for="tipoEstadoCivil" />
+                        <p:inputText id="tipoEstadoCivil" value="#{tbEstadoCivilController.selected.tipoEstadoCivil}" title="#{bundle.CreateTbEstadoCivilTitle_tipoEstadoCivil}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbEstadoCivilController.create}" value="#{bundle.Save}" update="display,:TbEstadoCivilListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbEstadoCivilCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbEstadoCivilCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

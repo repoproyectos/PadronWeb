@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbCultivoCreateDlg" widgetVar="TbCultivoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbCultivoTitle}">
+            <h:form id="TbCultivoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbCultivoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbCultivoLabel_idCultivo}" for="idCultivo" />
+                        <p:inputText id="idCultivo" value="#{tbCultivoController.selected.idCultivo}" title="#{bundle.CreateTbCultivoTitle_idCultivo}" required="true" requiredMessage="#{bundle.CreateTbCultivoRequiredMessage_idCultivo}"/>
+                        <p:outputLabel value="#{bundle.CreateTbCultivoLabel_tipoCultivo}" for="tipoCultivo" />
+                        <p:inputText id="tipoCultivo" value="#{tbCultivoController.selected.tipoCultivo}" title="#{bundle.CreateTbCultivoTitle_tipoCultivo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbCultivoController.create}" value="#{bundle.Save}" update="display,:TbCultivoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbCultivoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbCultivoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

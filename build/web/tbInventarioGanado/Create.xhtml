@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbInventarioGanadoCreateDlg" widgetVar="TbInventarioGanadoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbInventarioGanadoTitle}">
+            <h:form id="TbInventarioGanadoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbInventarioGanadoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbInventarioGanadoLabel_idInventarioGanado}" for="idInventarioGanado" />
+                        <p:inputText id="idInventarioGanado" value="#{tbInventarioGanadoController.selected.idInventarioGanado}" title="#{bundle.CreateTbInventarioGanadoTitle_idInventarioGanado}" required="true" requiredMessage="#{bundle.CreateTbInventarioGanadoRequiredMessage_idInventarioGanado}"/>
+                        <p:outputLabel value="#{bundle.CreateTbInventarioGanadoLabel_numGanado}" for="numGanado" />
+                        <p:inputText id="numGanado" value="#{tbInventarioGanadoController.selected.numGanado}" title="#{bundle.CreateTbInventarioGanadoTitle_numGanado}" />
+                        <p:outputLabel value="#{bundle.CreateTbInventarioGanadoLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbInventarioGanadoController.selected.fechaReg}" title="#{bundle.EditTbInventarioGanadoTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbInventarioGanadoLabel_idFamilia}" for="idFamilia" />
+                        <p:selectOneMenu id="idFamilia" value="#{tbInventarioGanadoController.selected.idFamilia}" >
+                            <f:selectItems value="#{tbFamiliaController.itemsAvailableSelectOne}"
+                                           var="idFamiliaItem"
+                                           itemValue="#{idFamiliaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbInventarioGanadoLabel_idGanado}" for="idGanado" />
+                        <p:selectOneMenu id="idGanado" value="#{tbInventarioGanadoController.selected.idGanado}" >
+                            <f:selectItems value="#{tbGanadoController.itemsAvailableSelectOne}"
+                                           var="idGanadoItem"
+                                           itemValue="#{idGanadoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbInventarioGanadoController.create}" value="#{bundle.Save}" update="display,:TbInventarioGanadoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbInventarioGanadoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbInventarioGanadoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

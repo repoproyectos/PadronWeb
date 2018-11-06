@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbDatosFichaEditDlg" widgetVar="TbDatosFichaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbDatosFichaTitle}">
+            <h:form id="TbDatosFichaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbDatosFichaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbDatosFichaLabel_idDatosFicha}" for="idDatosFicha" />
+                        <p:inputText id="idDatosFicha" value="#{tbDatosFichaController.selected.idDatosFicha}" title="#{bundle.EditTbDatosFichaTitle_idDatosFicha}" required="true" requiredMessage="#{bundle.EditTbDatosFichaRequiredMessage_idDatosFicha}"/>
+                        <p:outputLabel value="#{bundle.EditTbDatosFichaLabel_nombreEncuestador}" for="nombreEncuestador" />
+                        <p:inputText id="nombreEncuestador" value="#{tbDatosFichaController.selected.nombreEncuestador}" title="#{bundle.EditTbDatosFichaTitle_nombreEncuestador}" />
+                        <p:outputLabel value="#{bundle.EditTbDatosFichaLabel_fechaEncuesta}" for="fechaEncuesta" />
+                        <p:calendar id="fechaEncuesta" pattern="MM/dd/yyyy" value="#{tbDatosFichaController.selected.fechaEncuesta}" title="#{bundle.EditTbDatosFichaTitle_fechaEncuesta}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTbDatosFichaLabel_idFamilia}" for="idFamilia" />
+                        <p:selectOneMenu id="idFamilia" value="#{tbDatosFichaController.selected.idFamilia}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbFamiliaController.itemsAvailableSelectOne}"
+                                           var="idFamiliaItem"
+                                           itemValue="#{idFamiliaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbDatosFichaLabel_idUsuario}" for="idUsuario" />
+                        <p:selectOneMenu id="idUsuario" value="#{tbDatosFichaController.selected.idUsuario}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbUsuarioController.itemsAvailableSelectOne}"
+                                           var="idUsuarioItem"
+                                           itemValue="#{idUsuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbDatosFichaController.update}" value="#{bundle.Save}" update="display,:TbDatosFichaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbDatosFichaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbDatosFichaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

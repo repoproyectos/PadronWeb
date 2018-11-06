@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbTurnoRiegoViewDlg" widgetVar="TbTurnoRiegoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbTurnoRiegoTitle}">
+            <h:form id="TbTurnoRiegoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbTurnoRiegoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbTurnoRiegoLabel_idTurnoRiego}"/>
+                        <h:outputText value="#{tbTurnoRiegoController.selected.idTurnoRiego}" title="#{bundle.ViewTbTurnoRiegoTitle_idTurnoRiego}"/>
+                        <h:outputText value="#{bundle.ViewTbTurnoRiegoLabel_numDias}"/>
+                        <h:outputText value="#{tbTurnoRiegoController.selected.numDias}" title="#{bundle.ViewTbTurnoRiegoTitle_numDias}"/>
+                        <h:outputText value="#{bundle.ViewTbTurnoRiegoLabel_horasTurno}"/>
+                        <h:outputText value="#{tbTurnoRiegoController.selected.horasTurno}" title="#{bundle.ViewTbTurnoRiegoTitle_horasTurno}"/>
+                        <h:outputText value="#{bundle.ViewTbTurnoRiegoLabel_fechaReg}"/>
+                        <h:outputText value="#{tbTurnoRiegoController.selected.fechaReg}" title="#{bundle.ViewTbTurnoRiegoTitle_fechaReg}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbTurnoRiegoLabel_idFrecuenciaRiego}"/>
+                        <h:outputText value="#{tbTurnoRiegoController.selected.idFrecuenciaRiego}" title="#{bundle.ViewTbTurnoRiegoTitle_idFrecuenciaRiego}"/>
+                        <h:outputText value="#{bundle.ViewTbTurnoRiegoLabel_idLote}"/>
+                        <h:outputText value="#{tbTurnoRiegoController.selected.idLote}" title="#{bundle.ViewTbTurnoRiegoTitle_idLote}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbTurnoRiegoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

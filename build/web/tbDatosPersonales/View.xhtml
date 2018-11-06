@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbDatosPersonalesViewDlg" widgetVar="TbDatosPersonalesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbDatosPersonalesTitle}">
+            <h:form id="TbDatosPersonalesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbDatosPersonalesController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_idDatosPersonales}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.idDatosPersonales}" title="#{bundle.ViewTbDatosPersonalesTitle_idDatosPersonales}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_cedula}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.cedula}" title="#{bundle.ViewTbDatosPersonalesTitle_cedula}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_apellidos}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.apellidos}" title="#{bundle.ViewTbDatosPersonalesTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_nombres}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.nombres}" title="#{bundle.ViewTbDatosPersonalesTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_edad}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.edad}" title="#{bundle.ViewTbDatosPersonalesTitle_edad}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_numTelFijo}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.numTelFijo}" title="#{bundle.ViewTbDatosPersonalesTitle_numTelFijo}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_numTelMovil}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.numTelMovil}" title="#{bundle.ViewTbDatosPersonalesTitle_numTelMovil}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_jefeHogar}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.jefeHogar}" title="#{bundle.ViewTbDatosPersonalesTitle_jefeHogar}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_fechaReg}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.fechaReg}" title="#{bundle.ViewTbDatosPersonalesTitle_fechaReg}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_idActividadPrincipal}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.idActividadPrincipal}" title="#{bundle.ViewTbDatosPersonalesTitle_idActividadPrincipal}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_idComunidad}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.idComunidad}" title="#{bundle.ViewTbDatosPersonalesTitle_idComunidad}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_idDatosConyugue}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.idDatosConyugue}" title="#{bundle.ViewTbDatosPersonalesTitle_idDatosConyugue}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_idEstadoCivil}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.idEstadoCivil}" title="#{bundle.ViewTbDatosPersonalesTitle_idEstadoCivil}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_idNivelInstruccion}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.idNivelInstruccion}" title="#{bundle.ViewTbDatosPersonalesTitle_idNivelInstruccion}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosPersonalesLabel_idSexo}"/>
+                        <h:outputText value="#{tbDatosPersonalesController.selected.idSexo}" title="#{bundle.ViewTbDatosPersonalesTitle_idSexo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbDatosPersonalesViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

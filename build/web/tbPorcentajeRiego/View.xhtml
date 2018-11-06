@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbPorcentajeRiegoViewDlg" widgetVar="TbPorcentajeRiegoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbPorcentajeRiegoTitle}">
+            <h:form id="TbPorcentajeRiegoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbPorcentajeRiegoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbPorcentajeRiegoLabel_idPorcentajeRiego}"/>
+                        <h:outputText value="#{tbPorcentajeRiegoController.selected.idPorcentajeRiego}" title="#{bundle.ViewTbPorcentajeRiegoTitle_idPorcentajeRiego}"/>
+                        <h:outputText value="#{bundle.ViewTbPorcentajeRiegoLabel_porcentaje}"/>
+                        <h:outputText value="#{tbPorcentajeRiegoController.selected.porcentaje}" title="#{bundle.ViewTbPorcentajeRiegoTitle_porcentaje}"/>
+                        <h:outputText value="#{bundle.ViewTbPorcentajeRiegoLabel_numAspersoresSitio}"/>
+                        <h:outputText value="#{tbPorcentajeRiegoController.selected.numAspersoresSitio}" title="#{bundle.ViewTbPorcentajeRiegoTitle_numAspersoresSitio}"/>
+                        <h:outputText value="#{bundle.ViewTbPorcentajeRiegoLabel_fechaReg}"/>
+                        <h:outputText value="#{tbPorcentajeRiegoController.selected.fechaReg}" title="#{bundle.ViewTbPorcentajeRiegoTitle_fechaReg}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbPorcentajeRiegoLabel_idLote}"/>
+                        <h:outputText value="#{tbPorcentajeRiegoController.selected.idLote}" title="#{bundle.ViewTbPorcentajeRiegoTitle_idLote}"/>
+                        <h:outputText value="#{bundle.ViewTbPorcentajeRiegoLabel_idMetodoRiego}"/>
+                        <h:outputText value="#{tbPorcentajeRiegoController.selected.idMetodoRiego}" title="#{bundle.ViewTbPorcentajeRiegoTitle_idMetodoRiego}"/>
+                        <h:outputText value="#{bundle.ViewTbPorcentajeRiegoLabel_idTipoAspersor}"/>
+                        <h:outputText value="#{tbPorcentajeRiegoController.selected.idTipoAspersor}" title="#{bundle.ViewTbPorcentajeRiegoTitle_idTipoAspersor}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbPorcentajeRiegoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

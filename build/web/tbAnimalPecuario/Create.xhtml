@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbAnimalPecuarioCreateDlg" widgetVar="TbAnimalPecuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbAnimalPecuarioTitle}">
+            <h:form id="TbAnimalPecuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbAnimalPecuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbAnimalPecuarioLabel_idAnimalPecuario}" for="idAnimalPecuario" />
+                        <p:inputText id="idAnimalPecuario" value="#{tbAnimalPecuarioController.selected.idAnimalPecuario}" title="#{bundle.CreateTbAnimalPecuarioTitle_idAnimalPecuario}" required="true" requiredMessage="#{bundle.CreateTbAnimalPecuarioRequiredMessage_idAnimalPecuario}"/>
+                        <p:outputLabel value="#{bundle.CreateTbAnimalPecuarioLabel_nomAnimal}" for="nomAnimal" />
+                        <p:inputText id="nomAnimal" value="#{tbAnimalPecuarioController.selected.nomAnimal}" title="#{bundle.CreateTbAnimalPecuarioTitle_nomAnimal}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbAnimalPecuarioController.create}" value="#{bundle.Save}" update="display,:TbAnimalPecuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbAnimalPecuarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbAnimalPecuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

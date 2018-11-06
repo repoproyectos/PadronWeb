@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbNivelInstruccionCreateDlg" widgetVar="TbNivelInstruccionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbNivelInstruccionTitle}">
+            <h:form id="TbNivelInstruccionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbNivelInstruccionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbNivelInstruccionLabel_idNivelInstruccion}" for="idNivelInstruccion" />
+                        <p:inputText id="idNivelInstruccion" value="#{tbNivelInstruccionController.selected.idNivelInstruccion}" title="#{bundle.CreateTbNivelInstruccionTitle_idNivelInstruccion}" required="true" requiredMessage="#{bundle.CreateTbNivelInstruccionRequiredMessage_idNivelInstruccion}"/>
+                        <p:outputLabel value="#{bundle.CreateTbNivelInstruccionLabel_tipoInstruccion}" for="tipoInstruccion" />
+                        <p:inputText id="tipoInstruccion" value="#{tbNivelInstruccionController.selected.tipoInstruccion}" title="#{bundle.CreateTbNivelInstruccionTitle_tipoInstruccion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbNivelInstruccionController.create}" value="#{bundle.Save}" update="display,:TbNivelInstruccionListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbNivelInstruccionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbNivelInstruccionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbDatosHijoViewDlg" widgetVar="TbDatosHijoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbDatosHijoTitle}">
+            <h:form id="TbDatosHijoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbDatosHijoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_idDatosHijo}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.idDatosHijo}" title="#{bundle.ViewTbDatosHijoTitle_idDatosHijo}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_cedulaHijo}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.cedulaHijo}" title="#{bundle.ViewTbDatosHijoTitle_cedulaHijo}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_apellidosHijo}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.apellidosHijo}" title="#{bundle.ViewTbDatosHijoTitle_apellidosHijo}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_nombresHijo}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.nombresHijo}" title="#{bundle.ViewTbDatosHijoTitle_nombresHijo}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_edadHijo}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.edadHijo}" title="#{bundle.ViewTbDatosHijoTitle_edadHijo}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_dependiente}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.dependiente}" title="#{bundle.ViewTbDatosHijoTitle_dependiente}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_fechaReg}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.fechaReg}" title="#{bundle.ViewTbDatosHijoTitle_fechaReg}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_idActividadPrincipal}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.idActividadPrincipal}" title="#{bundle.ViewTbDatosHijoTitle_idActividadPrincipal}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_idDatosConyugue}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.idDatosConyugue}" title="#{bundle.ViewTbDatosHijoTitle_idDatosConyugue}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_idDatosPersonales}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.idDatosPersonales}" title="#{bundle.ViewTbDatosHijoTitle_idDatosPersonales}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_idFamilia}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.idFamilia}" title="#{bundle.ViewTbDatosHijoTitle_idFamilia}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_idNivelInstruccion}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.idNivelInstruccion}" title="#{bundle.ViewTbDatosHijoTitle_idNivelInstruccion}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosHijoLabel_idSexo}"/>
+                        <h:outputText value="#{tbDatosHijoController.selected.idSexo}" title="#{bundle.ViewTbDatosHijoTitle_idSexo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbDatosHijoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

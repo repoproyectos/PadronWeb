@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbDatosHijoEditDlg" widgetVar="TbDatosHijoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbDatosHijoTitle}">
+            <h:form id="TbDatosHijoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbDatosHijoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_idDatosHijo}" for="idDatosHijo" />
+                        <p:inputText id="idDatosHijo" value="#{tbDatosHijoController.selected.idDatosHijo}" title="#{bundle.EditTbDatosHijoTitle_idDatosHijo}" required="true" requiredMessage="#{bundle.EditTbDatosHijoRequiredMessage_idDatosHijo}"/>
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_cedulaHijo}" for="cedulaHijo" />
+                        <p:inputText id="cedulaHijo" value="#{tbDatosHijoController.selected.cedulaHijo}" title="#{bundle.EditTbDatosHijoTitle_cedulaHijo}" />
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_apellidosHijo}" for="apellidosHijo" />
+                        <p:inputText id="apellidosHijo" value="#{tbDatosHijoController.selected.apellidosHijo}" title="#{bundle.EditTbDatosHijoTitle_apellidosHijo}" />
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_nombresHijo}" for="nombresHijo" />
+                        <p:inputText id="nombresHijo" value="#{tbDatosHijoController.selected.nombresHijo}" title="#{bundle.EditTbDatosHijoTitle_nombresHijo}" />
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_edadHijo}" for="edadHijo" />
+                        <p:inputText id="edadHijo" value="#{tbDatosHijoController.selected.edadHijo}" title="#{bundle.EditTbDatosHijoTitle_edadHijo}" />
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_dependiente}" for="dependiente" />
+                        <p:inputText id="dependiente" value="#{tbDatosHijoController.selected.dependiente}" title="#{bundle.EditTbDatosHijoTitle_dependiente}" />
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbDatosHijoController.selected.fechaReg}" title="#{bundle.EditTbDatosHijoTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_idActividadPrincipal}" for="idActividadPrincipal" />
+                        <p:selectOneMenu id="idActividadPrincipal" value="#{tbDatosHijoController.selected.idActividadPrincipal}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbActividadPrincipalController.itemsAvailableSelectOne}"
+                                           var="idActividadPrincipalItem"
+                                           itemValue="#{idActividadPrincipalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_idDatosConyugue}" for="idDatosConyugue" />
+                        <p:selectOneMenu id="idDatosConyugue" value="#{tbDatosHijoController.selected.idDatosConyugue}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbDatosConyugueController.itemsAvailableSelectOne}"
+                                           var="idDatosConyugueItem"
+                                           itemValue="#{idDatosConyugueItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_idDatosPersonales}" for="idDatosPersonales" />
+                        <p:selectOneMenu id="idDatosPersonales" value="#{tbDatosHijoController.selected.idDatosPersonales}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbDatosPersonalesController.itemsAvailableSelectOne}"
+                                           var="idDatosPersonalesItem"
+                                           itemValue="#{idDatosPersonalesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_idFamilia}" for="idFamilia" />
+                        <p:selectOneMenu id="idFamilia" value="#{tbDatosHijoController.selected.idFamilia}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbFamiliaController.itemsAvailableSelectOne}"
+                                           var="idFamiliaItem"
+                                           itemValue="#{idFamiliaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_idNivelInstruccion}" for="idNivelInstruccion" />
+                        <p:selectOneMenu id="idNivelInstruccion" value="#{tbDatosHijoController.selected.idNivelInstruccion}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbNivelInstruccionController.itemsAvailableSelectOne}"
+                                           var="idNivelInstruccionItem"
+                                           itemValue="#{idNivelInstruccionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbDatosHijoLabel_idSexo}" for="idSexo" />
+                        <p:selectOneMenu id="idSexo" value="#{tbDatosHijoController.selected.idSexo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbSexoController.itemsAvailableSelectOne}"
+                                           var="idSexoItem"
+                                           itemValue="#{idSexoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbDatosHijoController.update}" value="#{bundle.Save}" update="display,:TbDatosHijoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbDatosHijoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbDatosHijoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

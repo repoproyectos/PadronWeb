@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbTurnoRiegoEditDlg" widgetVar="TbTurnoRiegoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbTurnoRiegoTitle}">
+            <h:form id="TbTurnoRiegoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbTurnoRiegoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbTurnoRiegoLabel_idTurnoRiego}" for="idTurnoRiego" />
+                        <p:inputText id="idTurnoRiego" value="#{tbTurnoRiegoController.selected.idTurnoRiego}" title="#{bundle.EditTbTurnoRiegoTitle_idTurnoRiego}" required="true" requiredMessage="#{bundle.EditTbTurnoRiegoRequiredMessage_idTurnoRiego}"/>
+                        <p:outputLabel value="#{bundle.EditTbTurnoRiegoLabel_numDias}" for="numDias" />
+                        <p:inputText id="numDias" value="#{tbTurnoRiegoController.selected.numDias}" title="#{bundle.EditTbTurnoRiegoTitle_numDias}" />
+                        <p:outputLabel value="#{bundle.EditTbTurnoRiegoLabel_horasTurno}" for="horasTurno" />
+                        <p:inputText id="horasTurno" value="#{tbTurnoRiegoController.selected.horasTurno}" title="#{bundle.EditTbTurnoRiegoTitle_horasTurno}" />
+                        <p:outputLabel value="#{bundle.EditTbTurnoRiegoLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbTurnoRiegoController.selected.fechaReg}" title="#{bundle.EditTbTurnoRiegoTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTbTurnoRiegoLabel_idFrecuenciaRiego}" for="idFrecuenciaRiego" />
+                        <p:selectOneMenu id="idFrecuenciaRiego" value="#{tbTurnoRiegoController.selected.idFrecuenciaRiego}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbFrecuenciaRiegoController.itemsAvailableSelectOne}"
+                                           var="idFrecuenciaRiegoItem"
+                                           itemValue="#{idFrecuenciaRiegoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbTurnoRiegoLabel_idLote}" for="idLote" />
+                        <p:selectOneMenu id="idLote" value="#{tbTurnoRiegoController.selected.idLote}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbLoteController.itemsAvailableSelectOne}"
+                                           var="idLoteItem"
+                                           itemValue="#{idLoteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbTurnoRiegoController.update}" value="#{bundle.Save}" update="display,:TbTurnoRiegoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbTurnoRiegoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbTurnoRiegoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

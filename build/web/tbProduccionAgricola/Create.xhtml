@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbProduccionAgricolaCreateDlg" widgetVar="TbProduccionAgricolaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbProduccionAgricolaTitle}">
+            <h:form id="TbProduccionAgricolaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbProduccionAgricolaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbProduccionAgricolaLabel_idProduccionAgricola}" for="idProduccionAgricola" />
+                        <p:inputText id="idProduccionAgricola" value="#{tbProduccionAgricolaController.selected.idProduccionAgricola}" title="#{bundle.CreateTbProduccionAgricolaTitle_idProduccionAgricola}" required="true" requiredMessage="#{bundle.CreateTbProduccionAgricolaRequiredMessage_idProduccionAgricola}"/>
+                        <p:outputLabel value="#{bundle.CreateTbProduccionAgricolaLabel_superficieCultivo}" for="superficieCultivo" />
+                        <p:inputText id="superficieCultivo" value="#{tbProduccionAgricolaController.selected.superficieCultivo}" title="#{bundle.CreateTbProduccionAgricolaTitle_superficieCultivo}" />
+                        <p:outputLabel value="#{bundle.CreateTbProduccionAgricolaLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbProduccionAgricolaController.selected.fechaReg}" title="#{bundle.EditTbProduccionAgricolaTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbProduccionAgricolaLabel_idCultivo}" for="idCultivo" />
+                        <p:selectOneMenu id="idCultivo" value="#{tbProduccionAgricolaController.selected.idCultivo}" >
+                            <f:selectItems value="#{tbCultivoController.itemsAvailableSelectOne}"
+                                           var="idCultivoItem"
+                                           itemValue="#{idCultivoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbProduccionAgricolaLabel_idLote}" for="idLote" />
+                        <p:selectOneMenu id="idLote" value="#{tbProduccionAgricolaController.selected.idLote}" >
+                            <f:selectItems value="#{tbLoteController.itemsAvailableSelectOne}"
+                                           var="idLoteItem"
+                                           itemValue="#{idLoteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbProduccionAgricolaController.create}" value="#{bundle.Save}" update="display,:TbProduccionAgricolaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbProduccionAgricolaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbProduccionAgricolaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

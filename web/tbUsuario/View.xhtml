@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbUsuarioViewDlg" widgetVar="TbUsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbUsuarioTitle}">
+            <h:form id="TbUsuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbUsuarioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbUsuarioLabel_idUsuario}"/>
+                        <h:outputText value="#{tbUsuarioController.selected.idUsuario}" title="#{bundle.ViewTbUsuarioTitle_idUsuario}"/>
+                        <h:outputText value="#{bundle.ViewTbUsuarioLabel_nomUsuario}"/>
+                        <h:outputText value="#{tbUsuarioController.selected.nomUsuario}" title="#{bundle.ViewTbUsuarioTitle_nomUsuario}"/>
+                        <h:outputText value="#{bundle.ViewTbUsuarioLabel_contrasena}"/>
+                        <h:outputText value="#{tbUsuarioController.selected.contrasena}" title="#{bundle.ViewTbUsuarioTitle_contrasena}"/>
+                        <h:outputText value="#{bundle.ViewTbUsuarioLabel_idRegistroUsuario}"/>
+                        <h:outputText value="#{tbUsuarioController.selected.idRegistroUsuario}" title="#{bundle.ViewTbUsuarioTitle_idRegistroUsuario}"/>
+                        <h:outputText value="#{bundle.ViewTbUsuarioLabel_idTipoUsuario}"/>
+                        <h:outputText value="#{tbUsuarioController.selected.idTipoUsuario}" title="#{bundle.ViewTbUsuarioTitle_idTipoUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbUsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

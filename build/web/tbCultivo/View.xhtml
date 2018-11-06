@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbCultivoViewDlg" widgetVar="TbCultivoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbCultivoTitle}">
+            <h:form id="TbCultivoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbCultivoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbCultivoLabel_idCultivo}"/>
+                        <h:outputText value="#{tbCultivoController.selected.idCultivo}" title="#{bundle.ViewTbCultivoTitle_idCultivo}"/>
+                        <h:outputText value="#{bundle.ViewTbCultivoLabel_tipoCultivo}"/>
+                        <h:outputText value="#{tbCultivoController.selected.tipoCultivo}" title="#{bundle.ViewTbCultivoTitle_tipoCultivo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbCultivoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

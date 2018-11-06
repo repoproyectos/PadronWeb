@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbDatosConyugueViewDlg" widgetVar="TbDatosConyugueViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbDatosConyugueTitle}">
+            <h:form id="TbDatosConyugueViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbDatosConyugueController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_idDatosConyugue}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.idDatosConyugue}" title="#{bundle.ViewTbDatosConyugueTitle_idDatosConyugue}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_cedulaConyugue}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.cedulaConyugue}" title="#{bundle.ViewTbDatosConyugueTitle_cedulaConyugue}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_apellidosConyugue}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.apellidosConyugue}" title="#{bundle.ViewTbDatosConyugueTitle_apellidosConyugue}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_nombresConyugue}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.nombresConyugue}" title="#{bundle.ViewTbDatosConyugueTitle_nombresConyugue}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_edadConyugue}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.edadConyugue}" title="#{bundle.ViewTbDatosConyugueTitle_edadConyugue}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_fechaReg}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.fechaReg}" title="#{bundle.ViewTbDatosConyugueTitle_fechaReg}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_idActividadPrincipal}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.idActividadPrincipal}" title="#{bundle.ViewTbDatosConyugueTitle_idActividadPrincipal}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_idNivelInstruccion}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.idNivelInstruccion}" title="#{bundle.ViewTbDatosConyugueTitle_idNivelInstruccion}"/>
+                        <h:outputText value="#{bundle.ViewTbDatosConyugueLabel_idSexo}"/>
+                        <h:outputText value="#{tbDatosConyugueController.selected.idSexo}" title="#{bundle.ViewTbDatosConyugueTitle_idSexo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbDatosConyugueViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

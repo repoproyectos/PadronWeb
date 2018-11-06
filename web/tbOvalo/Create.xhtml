@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbOvaloCreateDlg" widgetVar="TbOvaloCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbOvaloTitle}">
+            <h:form id="TbOvaloCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbOvaloController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbOvaloLabel_idOvalo}" for="idOvalo" />
+                        <p:inputText id="idOvalo" value="#{tbOvaloController.selected.idOvalo}" title="#{bundle.CreateTbOvaloTitle_idOvalo}" required="true" requiredMessage="#{bundle.CreateTbOvaloRequiredMessage_idOvalo}"/>
+                        <p:outputLabel value="#{bundle.CreateTbOvaloLabel_nomOvalo}" for="nomOvalo" />
+                        <p:inputText id="nomOvalo" value="#{tbOvaloController.selected.nomOvalo}" title="#{bundle.CreateTbOvaloTitle_nomOvalo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbOvaloController.create}" value="#{bundle.Save}" update="display,:TbOvaloListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbOvaloCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbOvaloCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

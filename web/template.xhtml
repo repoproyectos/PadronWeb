@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputScript library="js" name="main.js"/>
+        <f:event type="preRenderView" listener="#{plantillaController.verficarSesion()}"/>
+    </h:head>
+    <h:body>
+        <p:growl id="growl" life="3000" />
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.Home}" outcome="/llenarFormulario.xhtml" icon="ui-icon-home"/>
+                        <p:submenu label="Llenar Formulario">
+                            <p:menuitem value="Llenar Formulario" outcome="/llenarFormulario.xhtml"/>
+                        </p:submenu>
+                        <p:submenu label="Catálogo">
+                            <p:menuitem value="Acequia" outcome="/tbAcequia/List.xhtml" />
+                            <p:menuitem value="Actividad Principal" outcome="/tbActividadPrincipal/List.xhtml" />
+                            <p:menuitem value="Animal Pecuario" outcome="/tbAnimalPecuario/List.xhtml" />
+                            <p:menuitem value="Cantón" outcome="/tbCanton/List.xhtml" />
+                            <p:menuitem value="Comunidad" outcome="/tbComunidad/List.xhtml" />
+                            <p:menuitem value="Cultivo" outcome="/tbCultivo/List.xhtml" />
+                            <p:menuitem value="Conyugue" outcome="/tbDatosConyugue/List.xhtml" />
+                            <p:menuitem value="Datos Ficha" outcome="/tbDatosFicha/List.xhtml" />
+                            <p:menuitem value="Datos Hijo" outcome="/tbDatosHijo/List.xhtml" />
+                            <p:menuitem value="Datos Personales" outcome="/tbDatosPersonales/List.xhtml" />
+                            <p:menuitem value="Estado Civil" outcome="/tbEstadoCivil/List.xhtml" />
+                            <p:menuitem value="Familia" outcome="/tbFamilia/List.xhtml" />
+                            <p:menuitem value="Frecuencia Riego" outcome="/tbFrecuenciaRiego/List.xhtml" />
+                            <p:menuitem value="Ganado" outcome="/tbGanado/List.xhtml" />
+                            <p:menuitem value="Inventario Ganado" outcome="/tbInventarioGanado/List.xhtml" />
+                            <p:menuitem value="Lote" outcome="/tbLote/List.xhtml" />
+                            <p:menuitem value="Método Riego" outcome="/tbMetodoRiego/List.xhtml" />
+                            <p:menuitem value="Nivel Instruccion" outcome="/tbNivelInstruccion/List.xhtml" />
+                            <p:menuitem value="Organización Riego" outcome="/tbOrganizacionRiego/List.xhtml" />
+                            <p:menuitem value="Ovalo" outcome="/tbOvalo/List.xhtml" />
+                            <p:menuitem value="Parroquia" outcome="/tbParroquia/List.xhtml" />
+                            <p:menuitem value="Porcentaje Riego" outcome="/tbPorcentajeRiego/List.xhtml" />
+                            <p:menuitem value="Producción Agrícola" outcome="/tbProduccionAgricola/List.xhtml" />
+                            <p:menuitem value="Producción Leche" outcome="/tbProduccionLeche/List.xhtml" />
+                            <p:menuitem value="Producción Pecuario" outcome="/tbProduccionPecuario/List.xhtml" />
+                            <p:menuitem value="Provincia" outcome="/tbProvincia/List.xhtml" />
+                            <p:menuitem value="Sector" outcome="/tbSector/List.xhtml" />
+                            <p:menuitem value="Sexo" outcome="/tbSexo/List.xhtml" />
+                            <p:menuitem value="Tenencia Tierra" outcome="/tbTenenciaTierra/List.xhtml" />
+                            <p:menuitem value="Tipo Aspersor" outcome="/tbTipoAspersor/List.xhtml" />
+                            <p:menuitem value="Tipo Tarifa" outcome="/tbTipoTarifa/List.xhtml" />
+                            <p:menuitem value="Turno Riego" outcome="/tbTurnoRiego/List.xhtml" />
+                            <p:menuitem value="Valor Tarifa" outcome="/tbValorTarifa/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Usuarios">
+                            <p:menuitem value="Función" outcome="/tbFuncion/List.xhtml" />
+                            <p:menuitem value="Registro Usuario" outcome="/tbRegistroUsuario/List.xhtml" />
+                            <p:menuitem value="Roles Funciones" outcome="/tbRolesFunciones/List.xhtml" />
+                            <p:menuitem value="Tipo Usuario" outcome="/tbTipoUsuario/List.xhtml" />
+                            <p:menuitem value="Usuario" outcome="/tbUsuario/List.xhtml" />
+                        </p:submenu>
+                        <p:menuitem value="#{bundle.Home}" outcome="/llenarFormulario.xhtml" icon="ui-icon-home">
+                            <p:commandButton actionListener="#{loginbean.cerrarsesion()}" value="Cerrar Sesión" action="/inicio?faces-redirect=true" />
+                        </p:menuitem>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

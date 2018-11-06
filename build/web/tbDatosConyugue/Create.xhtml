@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbDatosConyugueCreateDlg" widgetVar="TbDatosConyugueCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbDatosConyugueTitle}">
+            <h:form id="TbDatosConyugueCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbDatosConyugueController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_idDatosConyugue}" for="idDatosConyugue" />
+                        <p:inputText id="idDatosConyugue" value="#{tbDatosConyugueController.selected.idDatosConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_idDatosConyugue}" required="true" requiredMessage="#{bundle.CreateTbDatosConyugueRequiredMessage_idDatosConyugue}"/>
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_cedulaConyugue}" for="cedulaConyugue" />
+                        <p:inputText id="cedulaConyugue" value="#{tbDatosConyugueController.selected.cedulaConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_cedulaConyugue}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_apellidosConyugue}" for="apellidosConyugue" />
+                        <p:inputText id="apellidosConyugue" value="#{tbDatosConyugueController.selected.apellidosConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_apellidosConyugue}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_nombresConyugue}" for="nombresConyugue" />
+                        <p:inputText id="nombresConyugue" value="#{tbDatosConyugueController.selected.nombresConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_nombresConyugue}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_edadConyugue}" for="edadConyugue" />
+                        <p:inputText id="edadConyugue" value="#{tbDatosConyugueController.selected.edadConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_edadConyugue}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbDatosConyugueController.selected.fechaReg}" title="#{bundle.EditTbDatosConyugueTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_idActividadPrincipal}" for="idActividadPrincipal" />
+                        <p:selectOneMenu id="idActividadPrincipal" value="#{tbDatosConyugueController.selected.idActividadPrincipal}" >
+                            <f:selectItems value="#{tbActividadPrincipalController.itemsAvailableSelectOne}"
+                                           var="idActividadPrincipalItem"
+                                           itemValue="#{idActividadPrincipalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_idNivelInstruccion}" for="idNivelInstruccion" />
+                        <p:selectOneMenu id="idNivelInstruccion" value="#{tbDatosConyugueController.selected.idNivelInstruccion}" >
+                            <f:selectItems value="#{tbNivelInstruccionController.itemsAvailableSelectOne}"
+                                           var="idNivelInstruccionItem"
+                                           itemValue="#{idNivelInstruccionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbDatosConyugueLabel_idSexo}" for="idSexo" />
+                        <p:selectOneMenu id="idSexo" value="#{tbDatosConyugueController.selected.idSexo}" >
+                            <f:selectItems value="#{tbSexoController.itemsAvailableSelectOne}"
+                                           var="idSexoItem"
+                                           itemValue="#{idSexoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbDatosConyugueController.create}" value="#{bundle.Save}" update="display,:TbDatosConyugueListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbDatosConyugueCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbDatosConyugueCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

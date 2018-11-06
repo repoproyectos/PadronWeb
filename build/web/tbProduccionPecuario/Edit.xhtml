@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbProduccionPecuarioEditDlg" widgetVar="TbProduccionPecuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbProduccionPecuarioTitle}">
+            <h:form id="TbProduccionPecuarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbProduccionPecuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbProduccionPecuarioLabel_idProduccionPecuario}" for="idProduccionPecuario" />
+                        <p:inputText id="idProduccionPecuario" value="#{tbProduccionPecuarioController.selected.idProduccionPecuario}" title="#{bundle.EditTbProduccionPecuarioTitle_idProduccionPecuario}" required="true" requiredMessage="#{bundle.EditTbProduccionPecuarioRequiredMessage_idProduccionPecuario}"/>
+                        <p:outputLabel value="#{bundle.EditTbProduccionPecuarioLabel_numAnimal}" for="numAnimal" />
+                        <p:inputText id="numAnimal" value="#{tbProduccionPecuarioController.selected.numAnimal}" title="#{bundle.EditTbProduccionPecuarioTitle_numAnimal}" />
+                        <p:outputLabel value="#{bundle.EditTbProduccionPecuarioLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbProduccionPecuarioController.selected.fechaReg}" title="#{bundle.EditTbProduccionPecuarioTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditTbProduccionPecuarioLabel_idAnimalPecuario}" for="idAnimalPecuario" />
+                        <p:selectOneMenu id="idAnimalPecuario" value="#{tbProduccionPecuarioController.selected.idAnimalPecuario}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbAnimalPecuarioController.itemsAvailableSelectOne}"
+                                           var="idAnimalPecuarioItem"
+                                           itemValue="#{idAnimalPecuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTbProduccionPecuarioLabel_idFamilia}" for="idFamilia" />
+                        <p:selectOneMenu id="idFamilia" value="#{tbProduccionPecuarioController.selected.idFamilia}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tbFamiliaController.itemsAvailableSelectOne}"
+                                           var="idFamiliaItem"
+                                           itemValue="#{idFamiliaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbProduccionPecuarioController.update}" value="#{bundle.Save}" update="display,:TbProduccionPecuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbProduccionPecuarioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbProduccionPecuarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

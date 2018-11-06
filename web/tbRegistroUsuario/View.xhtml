@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbRegistroUsuarioViewDlg" widgetVar="TbRegistroUsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbRegistroUsuarioTitle}">
+            <h:form id="TbRegistroUsuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbRegistroUsuarioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbRegistroUsuarioLabel_idRegistroUsuario}"/>
+                        <h:outputText value="#{tbRegistroUsuarioController.selected.idRegistroUsuario}" title="#{bundle.ViewTbRegistroUsuarioTitle_idRegistroUsuario}"/>
+                        <h:outputText value="#{bundle.ViewTbRegistroUsuarioLabel_apellidoUsuario}"/>
+                        <h:outputText value="#{tbRegistroUsuarioController.selected.apellidoUsuario}" title="#{bundle.ViewTbRegistroUsuarioTitle_apellidoUsuario}"/>
+                        <h:outputText value="#{bundle.ViewTbRegistroUsuarioLabel_nombreUsuario}"/>
+                        <h:outputText value="#{tbRegistroUsuarioController.selected.nombreUsuario}" title="#{bundle.ViewTbRegistroUsuarioTitle_nombreUsuario}"/>
+                        <h:outputText value="#{bundle.ViewTbRegistroUsuarioLabel_EMail}"/>
+                        <h:outputText value="#{tbRegistroUsuarioController.selected.EMail}" title="#{bundle.ViewTbRegistroUsuarioTitle_EMail}"/>
+                        <h:outputText value="#{bundle.ViewTbRegistroUsuarioLabel_cedulaUsuario}"/>
+                        <h:outputText value="#{tbRegistroUsuarioController.selected.cedulaUsuario}" title="#{bundle.ViewTbRegistroUsuarioTitle_cedulaUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbRegistroUsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbRegistroUsuarioEditDlg" widgetVar="TbRegistroUsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbRegistroUsuarioTitle}">
+            <h:form id="TbRegistroUsuarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbRegistroUsuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbRegistroUsuarioLabel_idRegistroUsuario}" for="idRegistroUsuario" />
+                        <p:inputText id="idRegistroUsuario" value="#{tbRegistroUsuarioController.selected.idRegistroUsuario}" title="#{bundle.EditTbRegistroUsuarioTitle_idRegistroUsuario}" required="true" requiredMessage="#{bundle.EditTbRegistroUsuarioRequiredMessage_idRegistroUsuario}"/>
+                        <p:outputLabel value="#{bundle.EditTbRegistroUsuarioLabel_apellidoUsuario}" for="apellidoUsuario" />
+                        <p:inputText id="apellidoUsuario" value="#{tbRegistroUsuarioController.selected.apellidoUsuario}" title="#{bundle.EditTbRegistroUsuarioTitle_apellidoUsuario}" />
+                        <p:outputLabel value="#{bundle.EditTbRegistroUsuarioLabel_nombreUsuario}" for="nombreUsuario" />
+                        <p:inputText id="nombreUsuario" value="#{tbRegistroUsuarioController.selected.nombreUsuario}" title="#{bundle.EditTbRegistroUsuarioTitle_nombreUsuario}" />
+                        <p:outputLabel value="#{bundle.EditTbRegistroUsuarioLabel_EMail}" for="EMail" />
+                        <p:inputText id="EMail" value="#{tbRegistroUsuarioController.selected.EMail}" title="#{bundle.EditTbRegistroUsuarioTitle_EMail}" />
+                        <p:outputLabel value="#{bundle.EditTbRegistroUsuarioLabel_cedulaUsuario}" for="cedulaUsuario" />
+                        <p:inputText id="cedulaUsuario" value="#{tbRegistroUsuarioController.selected.cedulaUsuario}" title="#{bundle.EditTbRegistroUsuarioTitle_cedulaUsuario}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbRegistroUsuarioController.update}" value="#{bundle.Save}" update="display,:TbRegistroUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbRegistroUsuarioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbRegistroUsuarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

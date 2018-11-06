@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbLoteCreateDlg" widgetVar="TbLoteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbLoteTitle}">
+            <h:form id="TbLoteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbLoteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_idLote}" for="idLote" />
+                        <p:inputText id="idLote" value="#{tbLoteController.selected.idLote}" title="#{bundle.CreateTbLoteTitle_idLote}" required="true" requiredMessage="#{bundle.CreateTbLoteRequiredMessage_idLote}"/>
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_codigoLote}" for="codigoLote" />
+                        <p:inputText id="codigoLote" value="#{tbLoteController.selected.codigoLote}" title="#{bundle.CreateTbLoteTitle_codigoLote}" />
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaTotalH}" for="areaTotalH" />
+                        <p:inputText id="areaTotalH" value="#{tbLoteController.selected.areaTotalH}" title="#{bundle.CreateTbLoteTitle_areaTotalH}" />
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaTotalM}" for="areaTotalM" />
+                        <p:inputText id="areaTotalM" value="#{tbLoteController.selected.areaTotalM}" title="#{bundle.CreateTbLoteTitle_areaTotalM}" />
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaRiegoH}" for="areaRiegoH" />
+                        <p:inputText id="areaRiegoH" value="#{tbLoteController.selected.areaRiegoH}" title="#{bundle.CreateTbLoteTitle_areaRiegoH}" />
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaRiegoM}" for="areaRiegoM" />
+                        <p:inputText id="areaRiegoM" value="#{tbLoteController.selected.areaRiegoM}" title="#{bundle.CreateTbLoteTitle_areaRiegoM}" />
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbLoteController.selected.fechaReg}" title="#{bundle.EditTbLoteTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_idAcequia}" for="idAcequia" />
+                        <p:selectOneMenu id="idAcequia" value="#{tbLoteController.selected.idAcequia}" >
+                            <f:selectItems value="#{tbAcequiaController.itemsAvailableSelectOne}"
+                                           var="idAcequiaItem"
+                                           itemValue="#{idAcequiaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_idComunidad}" for="idComunidad" />
+                        <p:selectOneMenu id="idComunidad" value="#{tbLoteController.selected.idComunidad}" >
+                            <f:selectItems value="#{tbComunidadController.itemsAvailableSelectOne}"
+                                           var="idComunidadItem"
+                                           itemValue="#{idComunidadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_idOrganizacionRiego}" for="idOrganizacionRiego" />
+                        <p:selectOneMenu id="idOrganizacionRiego" value="#{tbLoteController.selected.idOrganizacionRiego}" >
+                            <f:selectItems value="#{tbOrganizacionRiegoController.itemsAvailableSelectOne}"
+                                           var="idOrganizacionRiegoItem"
+                                           itemValue="#{idOrganizacionRiegoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_idOvalo}" for="idOvalo" />
+                        <p:selectOneMenu id="idOvalo" value="#{tbLoteController.selected.idOvalo}" >
+                            <f:selectItems value="#{tbOvaloController.itemsAvailableSelectOne}"
+                                           var="idOvaloItem"
+                                           itemValue="#{idOvaloItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbLoteLabel_idSector}" for="idSector" />
+                        <p:selectOneMenu id="idSector" value="#{tbLoteController.selected.idSector}" >
+                            <f:selectItems value="#{tbSectorController.itemsAvailableSelectOne}"
+                                           var="idSectorItem"
+                                           itemValue="#{idSectorItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbLoteController.create}" value="#{bundle.Save}" update="display,:TbLoteListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbLoteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbLoteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

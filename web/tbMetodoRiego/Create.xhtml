@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbMetodoRiegoCreateDlg" widgetVar="TbMetodoRiegoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbMetodoRiegoTitle}">
+            <h:form id="TbMetodoRiegoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbMetodoRiegoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbMetodoRiegoLabel_idMetodoRiego}" for="idMetodoRiego" />
+                        <p:inputText id="idMetodoRiego" value="#{tbMetodoRiegoController.selected.idMetodoRiego}" title="#{bundle.CreateTbMetodoRiegoTitle_idMetodoRiego}" required="true" requiredMessage="#{bundle.CreateTbMetodoRiegoRequiredMessage_idMetodoRiego}"/>
+                        <p:outputLabel value="#{bundle.CreateTbMetodoRiegoLabel_tipoMetodo}" for="tipoMetodo" />
+                        <p:inputText id="tipoMetodo" value="#{tbMetodoRiegoController.selected.tipoMetodo}" title="#{bundle.CreateTbMetodoRiegoTitle_tipoMetodo}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbMetodoRiegoController.create}" value="#{bundle.Save}" update="display,:TbMetodoRiegoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbMetodoRiegoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbMetodoRiegoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

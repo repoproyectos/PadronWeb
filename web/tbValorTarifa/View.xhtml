@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbValorTarifaViewDlg" widgetVar="TbValorTarifaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTbValorTarifaTitle}">
+            <h:form id="TbValorTarifaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbValorTarifaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTbValorTarifaLabel_idValorTarifa}"/>
+                        <h:outputText value="#{tbValorTarifaController.selected.idValorTarifa}" title="#{bundle.ViewTbValorTarifaTitle_idValorTarifa}"/>
+                        <h:outputText value="#{bundle.ViewTbValorTarifaLabel_valorTarifa}"/>
+                        <h:outputText value="#{tbValorTarifaController.selected.valorTarifa}" title="#{bundle.ViewTbValorTarifaTitle_valorTarifa}"/>
+                        <h:outputText value="#{bundle.ViewTbValorTarifaLabel_fechaReg}"/>
+                        <h:outputText value="#{tbValorTarifaController.selected.fechaReg}" title="#{bundle.ViewTbValorTarifaTitle_fechaReg}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewTbValorTarifaLabel_idLote}"/>
+                        <h:outputText value="#{tbValorTarifaController.selected.idLote}" title="#{bundle.ViewTbValorTarifaTitle_idLote}"/>
+                        <h:outputText value="#{bundle.ViewTbValorTarifaLabel_idTipoTarifa}"/>
+                        <h:outputText value="#{tbValorTarifaController.selected.idTipoTarifa}" title="#{bundle.ViewTbValorTarifaTitle_idTipoTarifa}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TbValorTarifaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

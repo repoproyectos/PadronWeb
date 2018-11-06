@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbComunidadCreateDlg" widgetVar="TbComunidadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbComunidadTitle}">
+            <h:form id="TbComunidadCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbComunidadController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbComunidadLabel_idComunidad}" for="idComunidad" />
+                        <p:inputText id="idComunidad" value="#{tbComunidadController.selected.idComunidad}" title="#{bundle.CreateTbComunidadTitle_idComunidad}" required="true" requiredMessage="#{bundle.CreateTbComunidadRequiredMessage_idComunidad}"/>
+                        <p:outputLabel value="#{bundle.CreateTbComunidadLabel_nomComunidad}" for="nomComunidad" />
+                        <p:inputText id="nomComunidad" value="#{tbComunidadController.selected.nomComunidad}" title="#{bundle.CreateTbComunidadTitle_nomComunidad}" />
+                        <p:outputLabel value="#{bundle.CreateTbComunidadLabel_idParroquia}" for="idParroquia" />
+                        <p:selectOneMenu id="idParroquia" value="#{tbComunidadController.selected.idParroquia}" >
+                            <f:selectItems value="#{tbParroquiaController.itemsAvailableSelectOne}"
+                                           var="idParroquiaItem"
+                                           itemValue="#{idParroquiaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbComunidadController.create}" value="#{bundle.Save}" update="display,:TbComunidadListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbComunidadCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbComunidadCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

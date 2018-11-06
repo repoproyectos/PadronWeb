@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTbLoteTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="TbLoteListForm">
+                <p:panel header="#{bundle.ListTbLoteTitle}">
+                    <p:dataTable id="datalist" value="#{tbLoteController.items}" var="item"
+                                 selectionMode="single" selection="#{tbLoteController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idLote}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_idLote}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLote}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_codigoLote}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoLote}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_areaTotalH}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.areaTotalH}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_areaTotalM}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.areaTotalM}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_areaRiegoH}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.areaRiegoH}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_areaRiegoM}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.areaRiegoM}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_fechaReg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaReg}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_idAcequia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAcequia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_idComunidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idComunidad}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_idOrganizacionRiego}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOrganizacionRiego}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_idOvalo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idOvalo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbLoteTitle_idSector}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idSector}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tbLoteController.prepareCreate}" update=":TbLoteCreateForm" oncomplete="PF('TbLoteCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TbLoteViewForm" oncomplete="PF('TbLoteViewDialog').show()" disabled="#{empty tbLoteController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TbLoteEditForm" oncomplete="PF('TbLoteEditDialog').show()" disabled="#{empty tbLoteController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tbLoteController.destroy}" update=":growl,datalist" disabled="#{empty tbLoteController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

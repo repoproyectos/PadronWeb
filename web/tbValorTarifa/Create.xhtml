@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbValorTarifaCreateDlg" widgetVar="TbValorTarifaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbValorTarifaTitle}">
+            <h:form id="TbValorTarifaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbValorTarifaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbValorTarifaLabel_idValorTarifa}" for="idValorTarifa" />
+                        <p:inputText id="idValorTarifa" value="#{tbValorTarifaController.selected.idValorTarifa}" title="#{bundle.CreateTbValorTarifaTitle_idValorTarifa}" required="true" requiredMessage="#{bundle.CreateTbValorTarifaRequiredMessage_idValorTarifa}"/>
+                        <p:outputLabel value="#{bundle.CreateTbValorTarifaLabel_valorTarifa}" for="valorTarifa" />
+                        <p:inputText id="valorTarifa" value="#{tbValorTarifaController.selected.valorTarifa}" title="#{bundle.CreateTbValorTarifaTitle_valorTarifa}" />
+                        <p:outputLabel value="#{bundle.CreateTbValorTarifaLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbValorTarifaController.selected.fechaReg}" title="#{bundle.EditTbValorTarifaTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbValorTarifaLabel_idLote}" for="idLote" />
+                        <p:selectOneMenu id="idLote" value="#{tbValorTarifaController.selected.idLote}" >
+                            <f:selectItems value="#{tbLoteController.itemsAvailableSelectOne}"
+                                           var="idLoteItem"
+                                           itemValue="#{idLoteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbValorTarifaLabel_idTipoTarifa}" for="idTipoTarifa" />
+                        <p:selectOneMenu id="idTipoTarifa" value="#{tbValorTarifaController.selected.idTipoTarifa}" >
+                            <f:selectItems value="#{tbTipoTarifaController.itemsAvailableSelectOne}"
+                                           var="idTipoTarifaItem"
+                                           itemValue="#{idTipoTarifaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbValorTarifaController.create}" value="#{bundle.Save}" update="display,:TbValorTarifaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbValorTarifaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbValorTarifaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

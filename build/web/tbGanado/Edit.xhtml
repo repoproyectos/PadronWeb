@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbGanadoEditDlg" widgetVar="TbGanadoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbGanadoTitle}">
+            <h:form id="TbGanadoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbGanadoController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbGanadoLabel_idGanado}" for="idGanado" />
+                        <p:inputText id="idGanado" value="#{tbGanadoController.selected.idGanado}" title="#{bundle.EditTbGanadoTitle_idGanado}" required="true" requiredMessage="#{bundle.EditTbGanadoRequiredMessage_idGanado}"/>
+                        <p:outputLabel value="#{bundle.EditTbGanadoLabel_tipoGanado}" for="tipoGanado" />
+                        <p:inputText id="tipoGanado" value="#{tbGanadoController.selected.tipoGanado}" title="#{bundle.EditTbGanadoTitle_tipoGanado}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbGanadoController.update}" value="#{bundle.Save}" update="display,:TbGanadoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbGanadoEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbGanadoEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

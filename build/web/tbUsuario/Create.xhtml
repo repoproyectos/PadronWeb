@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbUsuarioCreateDlg" widgetVar="TbUsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbUsuarioTitle}">
+            <h:form id="TbUsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbUsuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbUsuarioLabel_idUsuario}" for="idUsuario" />
+                        <p:inputText id="idUsuario" value="#{tbUsuarioController.selected.idUsuario}" title="#{bundle.CreateTbUsuarioTitle_idUsuario}" required="true" requiredMessage="#{bundle.CreateTbUsuarioRequiredMessage_idUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateTbUsuarioLabel_nomUsuario}" for="nomUsuario" />
+                        <p:inputText id="nomUsuario" value="#{tbUsuarioController.selected.nomUsuario}" title="#{bundle.CreateTbUsuarioTitle_nomUsuario}" />
+                        <p:outputLabel value="#{bundle.CreateTbUsuarioLabel_contrasena}" for="contrasena" />
+                        <p:inputText id="contrasena" value="#{tbUsuarioController.selected.contrasena}" title="#{bundle.CreateTbUsuarioTitle_contrasena}" />
+                        <p:outputLabel value="#{bundle.CreateTbUsuarioLabel_idRegistroUsuario}" for="idRegistroUsuario" />
+                        <p:selectOneMenu id="idRegistroUsuario" value="#{tbUsuarioController.selected.idRegistroUsuario}" >
+                            <f:selectItems value="#{tbRegistroUsuarioController.itemsAvailableSelectOne}"
+                                           var="idRegistroUsuarioItem"
+                                           itemValue="#{idRegistroUsuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbUsuarioLabel_idTipoUsuario}" for="idTipoUsuario" />
+                        <p:selectOneMenu id="idTipoUsuario" value="#{tbUsuarioController.selected.idTipoUsuario}" >
+                            <f:selectItems value="#{tbTipoUsuarioController.itemsAvailableSelectOne}"
+                                           var="idTipoUsuarioItem"
+                                           itemValue="#{idTipoUsuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbUsuarioController.create}" value="#{bundle.Save}" update="display,:TbUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbUsuarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbUsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

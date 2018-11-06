@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbTipoTarifaCreateDlg" widgetVar="TbTipoTarifaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbTipoTarifaTitle}">
+            <h:form id="TbTipoTarifaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbTipoTarifaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbTipoTarifaLabel_idTipoTarifa}" for="idTipoTarifa" />
+                        <p:inputText id="idTipoTarifa" value="#{tbTipoTarifaController.selected.idTipoTarifa}" title="#{bundle.CreateTbTipoTarifaTitle_idTipoTarifa}" required="true" requiredMessage="#{bundle.CreateTbTipoTarifaRequiredMessage_idTipoTarifa}"/>
+                        <p:outputLabel value="#{bundle.CreateTbTipoTarifaLabel_tipoTarifa}" for="tipoTarifa" />
+                        <p:inputText id="tipoTarifa" value="#{tbTipoTarifaController.selected.tipoTarifa}" title="#{bundle.CreateTbTipoTarifaTitle_tipoTarifa}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbTipoTarifaController.create}" value="#{bundle.Save}" update="display,:TbTipoTarifaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbTipoTarifaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbTipoTarifaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

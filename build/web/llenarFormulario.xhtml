@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/template.xhtml">
+        
+        <ui:define name="title">
+            <h:outputText value="LLenar Formulario"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+        <h:form id="TbDatosPersonalesCreateForm">  
+                            
+        <p:tabView>
+        <p:tab title="I. Datos de familia"> 
+                #{tbDatosPersonalesController.prepareCreate()}
+                #{tbDatosPersonalesController.prepareCreateHijo()}
+                #{tbDatosPersonalesController.prepareCreateC()}
+                #{tbDatosPersonalesController.prepareCreateFamilia()}
+                <h:panelGroup id="display">
+                    <div class="ui-g">
+                    <div class="form-group ui-md-3 ui-md-3" style="float:left; width: 25%;">
+                        
+                    <p:panelGrid columns="2" rendered="#{tbDatosPersonalesController.selected != null}">
+                        
+                        <f:facet name="header">
+                                <p:outputLabel value="DATOS PERSONALES"/>
+                            </f:facet>
+                        <p:outputLabel value="Cédula:" for="cedula" />
+                        <p:inputText id="cedula" class="cedula solo-numeros" value="#{tbDatosPersonalesController.selected.cedula}" title="#{bundle.CreateTbDatosPersonalesTitle_cedula}" required="true" requiredMessage="Cédula datos personales es requerido">
+                            <f:ajax render="propietario" />
+                        </p:inputText>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" class="solo-letras" value="#{tbDatosPersonalesController.selected.apellidos}" title="#{bundle.CreateTbDatosPersonalesTitle_apellidos}" required="true" requiredMessage="Apellidos datos personales es requerido"/>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" class="solo-letras" value="#{tbDatosPersonalesController.selected.nombres}" title="#{bundle.CreateTbDatosPersonalesTitle_nombres}" required="true" requiredMessage="Nombres datos personales es requerido"/>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_edad}" for="edad" />
+                        <p:inputText id="edad" class="solo-numeros" value="#{tbDatosPersonalesController.selected.edad}" title="#{bundle.CreateTbDatosPersonalesTitle_edad}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_numTelFijo}" for="numTelFijo" />
+                        <p:inputText id="numTelFijo" class="solo-numeros" placeholder="022222222" value="#{tbDatosPersonalesController.selected.numTelFijo}" title="#{bundle.CreateTbDatosPersonalesTitle_numTelFijo}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_numTelMovil}" for="numTelMovil" />
+                        <p:inputText id="numTelMovil" class="solo-numeros" placeholder="099999999" value="#{tbDatosPersonalesController.selected.numTelMovil}" title="#{bundle.CreateTbDatosPersonalesTitle_numTelMovil}" />
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_jefeHogar}" for="jefeHogar" />
+                        <p:selectOneRadio id="jefeHogar" value="#{tbDatosPersonalesController.selected.jefeHogar}">
+                            <f:selectItem itemValue="S" itemLabel="Si"></f:selectItem>
+                            <f:selectItem itemValue="N" itemLabel="No"></f:selectItem>
+                        </p:selectOneRadio>
+                        <p:outputLabel value="#{bundle.CreateTbDatosPersonalesLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbDatosPersonalesController.selected.fechaReg}" title="#{bundle.EditTbDatosPersonalesTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="Sexo:" for="idSexo" />
+                        <p:selectOneMenu id="idSexo" value="#{tbDatosPersonalesController.selected.idSexo}" >
+                            <f:selectItems value="#{tbSexoController.itemsAvailableSelectOne}"
+                                           var="idSexoItem"
+                                           itemValue="#{idSexoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Actividad principal:" for="idActividadPrincipal" />
+                        <p:selectOneMenu id="idActividadPrincipal" value="#{tbDatosPersonalesController.selected.idActividadPrincipal}" >
+                            <f:selectItems value="#{tbActividadPrincipalController.itemsAvailableSelectOne}"
+                                           var="idActividadPrincipalItem"
+                                           itemValue="#{idActividadPrincipalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Nivel de instrucción:" for="idNivelInstruccion" />
+                        <p:selectOneMenu id="idNivelInstruccion" value="#{tbDatosPersonalesController.selected.idNivelInstruccion}" >
+                            <f:selectItems value="#{tbNivelInstruccionController.itemsAvailableSelectOne}"
+                                           var="idNivelInstruccionItem"
+                                           itemValue="#{idNivelInstruccionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Estado civil:" for="idEstadoCivil" />
+                        <p:selectOneMenu id="idEstadoCivil" value="#{tbDatosPersonalesController.selected.idEstadoCivil}" >
+                            <f:selectItems value="#{tbEstadoCivilController.itemsAvailableSelectOne}"
+                                           var="idEstadoCivilItem"
+                                           itemValue="#{idEstadoCivilItem}"/>
+                        </p:selectOneMenu> 
+                        
+                    </p:panelGrid>
+                    </div>
+                    <div class="form-group ui-md-3 ui-md-3" style="float:left; width: 25%;">
+                        <p:panelGrid columns="2">
+                            <f:facet name="header">
+                                <p:outputLabel value="COMUNIDAD"/>
+                            </f:facet>
+                        <p:outputLabel value="Provincia:" for="idProvincia" />
+                        <p:selectOneMenu id="idProvincia" value="#{tbProvinciaController.selected}">
+                            <f:selectItem itemLabel="Seleccione uno" itemValue="" /> 
+                            <f:selectItems value="#{tbProvinciaController.itemsAvailableSelectOne}"
+                                           var="idProvinciaItem"
+                                           itemValue="#{idProvinciaItem}"/>
+                            <f:ajax render="idCanton22" />
+                         </p:selectOneMenu>
+                        
+                        <p:outputLabel value="Canton:" for="idCanton22" />
+                        <p:selectOneMenu id="idCanton22" value="#{tbCantonController.selected}">
+                            <f:selectItem itemLabel="Seleccione uno" itemValue="" /> 
+                            <f:selectItems value="#{tbProvinciaController.selected.tbCantonList}"
+                                           var="idCantonItem"
+                                           itemValue="#{idCantonItem}"/>
+                            <f:ajax render="idParroquia" />
+                         </p:selectOneMenu>
+                        <p:outputLabel value="Parroquia:" for="idParroquia" />
+                        <p:selectOneMenu id="idParroquia" value="#{tbParroquiaController.selected}">
+                            <f:selectItem itemLabel="Seleccione uno" itemValue="" /> 
+                            <f:selectItems value="#{tbCantonController.selected.tbParroquiaList}"
+                                           var="idParroquiaItem"
+                                           itemValue="#{idParroquiaItem}"/>
+                            <f:ajax render="idComunidad" />
+                         </p:selectOneMenu>
+                        <p:outputLabel value="Comunidad:" for="idComunidad" />
+                        <p:selectOneMenu id="idComunidad" value="#{tbDatosPersonalesController.selected.idComunidad}">
+                            <f:selectItem itemLabel="Seleccione uno" itemValue="" /> 
+                            <f:selectItems value="#{tbParroquiaController.selected.tbComunidadList}"
+                                           var="idComunidadItem"
+                                           itemValue="#{idComunidadItem}"/>
+                         </p:selectOneMenu>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2" >
+                            <f:facet name="header">
+                                <p:outputLabel value="CONYUGE"/>
+                            </f:facet>
+                        <p:outputLabel value="Cédula:" for="cedulaConyugue" />
+                        <p:inputText id="cedulaConyugue" class="cedula solo-numeros" value="#{tbDatosPersonalesController.selectedconyuge.cedulaConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_cedulaConyugue}" >
+                            <f:ajax render="propietario" />
+                        </p:inputText>
+                        <p:outputLabel value="Apellidos:" for="apellidosConyugue" />
+                        <p:inputText id="apellidosConyugue" class="solo-letras" value="#{tbDatosPersonalesController.selectedconyuge.apellidosConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_apellidosConyugue}" />
+                        <p:outputLabel value="Nombres:" for="nombresConyugue" />
+                        <p:inputText id="nombresConyugue" class="solo-letras" value="#{tbDatosPersonalesController.selectedconyuge.nombresConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_nombresConyugue}" required="true" requiredMessage="Este campo es requerido"/>
+                        <p:outputLabel value="Edad:" for="edadConyugue" />
+                        <p:inputText id="edadConyugue" class="solo-numeros" value="#{tbDatosPersonalesController.selectedconyuge.edadConyugue}" title="#{bundle.CreateTbDatosConyugueTitle_edadConyugue}" />
+                        <p:outputLabel value="Sexo:" for="idSexoC" />
+                        <p:selectOneMenu id="idSexoC" value="#{tbDatosPersonalesController.selectedconyuge.idSexo}" >
+                            <f:selectItems value="#{tbSexoController.itemsAvailableSelectOne}"
+                                           var="idSexoItem"
+                                           itemValue="#{idSexoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Actividad principal:" for="idActividadPrincipalC" />
+                        <p:selectOneMenu id="idActividadPrincipalC" value="#{tbDatosPersonalesController.selectedconyuge.idActividadPrincipal}" >
+                            <f:selectItems value="#{tbActividadPrincipalController.itemsAvailableSelectOne}"
+                                           var="idActividadPrincipalItem"
+                                           itemValue="#{idActividadPrincipalItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Nivel de instrucción:" for="idNivelInstruccionC" />
+                        <p:selectOneMenu id="idNivelInstruccionC" value="#{tbDatosPersonalesController.selectedconyuge.idNivelInstruccion}" >
+                            <f:selectItems value="#{tbNivelInstruccionController.itemsAvailableSelectOne}"
+                                           var="idNivelInstruccionItem"
+                                           itemValue="#{idNivelInstruccionItem}"/>
+                        </p:selectOneMenu>
+                        </p:panelGrid>
+                    </div>
+                    <div class="form-group ui-md-3 ui-md-3" style="float:left; width: 25%;">                       
+                        <p:panelGrid id="panelhijo" columns="2">
+                        <f:facet name="header">
+                                <p:outputLabel value="HIJOS"/>
+                        </f:facet>
+                        <p:outputLabel value="Cédula" for="cedulaHijo" />
+                        <p:inputText id="cedulaHijo" class="cedula solo-numeros" value="#{tbDatosPersonalesController.selectedhijo.cedulaHijo }" title="#{bundle.CreateTbDatosHijoTitle_cedulaHijo}" />
+                        <p:outputLabel value="Apellidos" for="apellidosHijo" />
+                        <p:inputText id="apellidosHijo" class="solo-letras" value="#{tbDatosPersonalesController.selectedhijo.apellidosHijo}" title="#{bundle.CreateTbDatosHijoTitle_apellidosHijo}" />
+                        <p:outputLabel value="Nombres" for="nombresHijo" />
+                        <p:inputText id="nombresHijo" class="solo-letras" value="#{tbDatosPersonalesController.selectedhijo.nombresHijo}" title="#{bundle.CreateTbDatosHijoTitle_nombresHijo}" />
+                        <p:outputLabel value="Edad" for="edadHijo" />
+                        <p:inputText id="edadHijo" class="solo-numeros" value="#{tbDatosPersonalesController.selectedhijo.edadHijo}" title="#{bundle.CreateTbDatosHijoTitle_edadHijo}" />
+                        <p:outputLabel value="Dependiente" for="dependiente" />
+                        <p:selectOneRadio id="dependiente" value="#{tbDatosPersonalesController.selectedhijo.dependiente}">
+                            <f:selectItem itemValue="S" itemLabel="Si"></f:selectItem>
+                            <f:selectItem itemValue="N" itemLabel="No"></f:selectItem>
+                        </p:selectOneRadio>
+                        
+                        <h:commandButton action="#{tbDatosPersonalesController.agregarHijo()}" id="prueba" value="Agregar">
+                            <f:ajax render="datalistHIJO propietario" execute="cedulaHijo apellidosHijo nombresHijo edadHijo dependiente" />
+                        </h:commandButton>
+                        
+                        <p:dataTable editable="true" style="width: 100%" id="datalistHIJO" value="#{tbDatosPersonalesController.selected.tbDatosHijoList}" 
+                                 var="item"
+                                 paginator="true"
+                                 selection="single"
+                                 rowKey="#{item.idDatosHijo}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbDatosHijoTitle_cedulaHijo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cedulaHijo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbDatosHijoTitle_apellidosHijo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.apellidosHijo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbDatosHijoTitle_nombresHijo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombresHijo}"/>
+                        </p:column>
+                        
+                        </p:dataTable>
+                        </p:panelGrid>
+                    </div>
+                    </div>
+                </h:panelGroup>
+        </p:tab>
+        <p:tab title="II. Datos de Unida Productiva y Riego">
+            <h:panelGroup id="display2">
+                <div class="form-group ui-md-3 ui-md-3" style="float:left; width: 25%;">  
+                <p:panelGrid id="upr" columns="2" rendered="#{tbDatosPersonalesController.selectedlote != null}">
+                <f:facet name="header"><p:outputLabel value="LOTE"/></f:facet>
+                <p:outputLabel value="#{bundle.CreateTbLoteLabel_codigoLote}" for="codigoLote" />
+                <p:inputText id="codigoLote" value="#{tbDatosPersonalesController.selectedlote.codigoLote}" title="#{bundle.CreateTbLoteTitle_codigoLote}" >
+                    <f:ajax render="idLotepa" />
+                </p:inputText>
+                <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaTotalH}" for="areaTotalH" />
+                <p:inputText id="areaTotalH" value="#{tbDatosPersonalesController.selectedlote.areaTotalH}" title="#{bundle.CreateTbLoteTitle_areaTotalH}" >
+                    <f:ajax listener="#{tbDatosPersonalesController.H2M()}" render="areaTotalM" />
+                </p:inputText>
+                <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaTotalM}" for="areaTotalM" />
+                <p:inputText id="areaTotalM" value="#{tbDatosPersonalesController.selectedlote.areaTotalM}" title="#{bundle.CreateTbLoteTitle_areaTotalM}" >
+                    <f:ajax listener="#{tbDatosPersonalesController.M2H()}" render="areaTotalH" />
+                </p:inputText>
+                <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaRiegoH}" for="areaRiegoH" />
+                <p:inputText id="areaRiegoH" value="#{tbDatosPersonalesController.selectedlote.areaRiegoH}" title="#{bundle.CreateTbLoteTitle_areaRiegoH}" >
+                    <f:ajax listener="#{tbDatosPersonalesController.H2M2()}" render="areaRiegoM" />
+                </p:inputText>
+                <p:outputLabel value="#{bundle.CreateTbLoteLabel_areaRiegoM}" for="areaRiegoM" />
+                <p:inputText id="areaRiegoM" value="#{tbDatosPersonalesController.selectedlote.areaRiegoM}" title="#{bundle.CreateTbLoteTitle_areaRiegoM}" >
+                    <f:ajax listener="#{tbDatosPersonalesController.M2H2()}" render="areaRiegoH" />
+                </p:inputText>
+                <p:outputLabel value="Organización de riego:" for="idOrganizacionRiego" />
+                <p:selectOneMenu id="idOrganizacionRiego" value="#{tbDatosPersonalesController.selectedlote.idOrganizacionRiego}" >
+                    <f:selectItems value="#{tbOrganizacionRiegoController.itemsAvailableSelectOne}"
+                                   var="idOrganizacionRiegoItem"
+                                   itemValue="#{idOrganizacionRiegoItem}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Ovalo:" for="idOvalo" />
+                <p:selectOneMenu id="idOvalo" value="#{tbDatosPersonalesController.selectedlote.idOvalo}" >
+                    <f:selectItems value="#{tbOvaloController.itemsAvailableSelectOne}"
+                                   var="idOvaloItem"
+                                   itemValue="#{idOvaloItem}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Comunidad:" for="idComunidadLote" />
+                <p:selectOneMenu id="idComunidadLote" value="#{tbDatosPersonalesController.selectedlote.idComunidad}" >
+                    <f:selectItems value="#{tbComunidadController.itemsAvailableSelectOne}"
+                                   var="idComunidadItem"
+                                   itemValue="#{idComunidadItem}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Sector:" for="idSector" />
+                <p:selectOneMenu id="idSector" value="#{tbDatosPersonalesController.selectedlote.idSector}" >
+                    <f:selectItems value="#{tbSectorController.itemsAvailableSelectOne}"
+                                   var="idSectorItem"
+                                   itemValue="#{idSectorItem}"/>
+                </p:selectOneMenu>  
+                <p:outputLabel value="Acequia:" for="idAcequiaLote" />
+                <p:selectOneMenu id="idAcequiaLote" value="#{tbDatosPersonalesController.selectedlote.idAcequia}" >
+                    <f:selectItems value="#{tbAcequiaController.itemsAvailableSelectOne}"
+                                   var="idAcequiaItem"
+                                   itemValue="#{idAcequiaItem}"/>
+                </p:selectOneMenu>
+                </p:panelGrid>
+                </div>
+                <div style="width: 25%; float:left;">
+                <p:panelGrid columns="2">
+                    <f:facet name="header"><p:outputLabel value="PROPIETARIO"/></f:facet>
+                    <p:outputLabel value="Propietario:" for="propietario" />
+                    <p:selectOneMenu id="propietario" value="#{tbDatosPersonalesController.selectedtenencia.propietario}" >
+                        <f:selectItem itemLabel="#{tbDatosPersonalesController.selected.cedula}" itemValue="#{tbDatosPersonalesController.selected.cedula}" /> 
+                        <f:selectItem itemLabel="#{tbDatosPersonalesController.selectedconyuge.cedulaConyugue}" itemValue="#{tbDatosPersonalesController.selectedconyuge.cedulaConyugue}" /> 
+                        <f:selectItems value="#{tbDatosPersonalesController.selected.tbDatosHijoList}"
+                                       var="idPropietarioHijoItem"
+                                       itemValue="#{idPropietarioHijoItem}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Estado de la tierra" for="estadoTierraS" />
+                    <p:selectOneRadio id="estadoTierraS" value="#{tbDatosPersonalesController.selectedtenencia.estadoTierra}">
+                        <f:selectItem itemValue="P" itemLabel="Uso propio"></f:selectItem>
+                        <f:selectItem itemValue="A" itemLabel="Arriendo"></f:selectItem>
+                    </p:selectOneRadio>
+                </p:panelGrid>
+                </div>
+                <div style="width: 25%; float:left;">
+                <p:panelGrid columns="2">
+                    <f:facet name="header"><p:outputLabel value="MÉTODO DE RIEGO"/></f:facet>
+                    <p:outputLabel value="Método de riego:" for="idMetodoRiego" />
+                    <p:selectOneMenu class="metodoriego" id="idMetodoRiego" value="#{tbDatosPersonalesController.selectedporcentajeriego.idMetodoRiego}" >
+                        <f:selectItem itemLabel="Seleccione uno" itemValue="" /> 
+                        <f:selectItems value="#{tbMetodoRiegoController.itemsAvailableSelectOne}"
+                                       var="idMetodoRiegoItem"
+                                       itemValue="#{idMetodoRiegoItem}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Porcentaje de riego:" for="porcentajeRiego" />
+                    <p:inputText id="porcentajeRiego" value="#{tbDatosPersonalesController.selectedporcentajeriego.porcentaje}">  
+                    </p:inputText>
+                    <p:outputLabel class="hijomr" value="Tipo de aspersor:" for="idTipoAspersor" />
+                    <p:selectOneMenu class="hijomr" id="idTipoAspersor" value="#{tbDatosPersonalesController.selectedporcentajeriego.idTipoAspersor}" >
+                        <f:selectItems value="#{tbTipoAspersorController.itemsAvailableSelectOne}"
+                                       var="idTipoAspersorItem"
+                                       itemValue="#{idTipoAspersorItem}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel class="hijomr" value="Número de aspersores:" for="numeroAspersores" />
+                    <p:inputText class="hijomr" id="numeroAspersores" value="#{tbDatosPersonalesController.selectedporcentajeriego.numAspersoresSitio}"/>  
+                </p:panelGrid>
+                </div>
+                <div style="width: 25%; float:left;">
+                <p:panelGrid columns="2">
+                    <f:facet name="header"><p:outputLabel value="TURNO DE RIEGO"/></f:facet>
+                    <p:outputLabel value="Frecuencia:" for="idFrecuenciaRiego" />
+                    <p:selectOneMenu id="idFrecuenciaRiego" value="#{tbDatosPersonalesController.selectedturnoriego.idFrecuenciaRiego}" >
+                        <f:selectItems value="#{tbFrecuenciaRiegoController.itemsAvailableSelectOne}"
+                                       var="idFrecuenciaRiegoItem"
+                                       itemValue="#{idFrecuenciaRiegoItem}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Número de días:" for="numeroDiasRiego" />
+                    <p:inputText id="numeroDiasRiego" value="#{tbDatosPersonalesController.selectedturnoriego.numDias}" >
+                    </p:inputText>
+                    <p:outputLabel value="Horas turno:" for="horasTurno" />
+                    <p:inputText id="horasTurno" value="#{tbDatosPersonalesController.selectedturnoriego.horasTurno}" >
+                    </p:inputText>
+                </p:panelGrid>
+                <p:panelGrid columns="2">
+                    <f:facet name="header"><p:outputLabel value="TARIFA DE RIEGO"/></f:facet>
+                    <p:outputLabel value="Tipo de tarifa:" for="idTipoTarifa" />
+                    <p:selectOneMenu id="idTipoTarifa" value="#{tbDatosPersonalesController.selectedvalortarifa.idTipoTarifa}" >
+                        <f:selectItems value="#{tbTipoTarifaController.itemsAvailableSelectOne}"
+                                       var="idTipoTarifaItem"
+                                       itemValue="#{idTipoTarifaItem}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Valor tarifa:" for="valorTarifa" />
+                    <p:inputText id="valorTarifa" value="#{tbDatosPersonalesController.selectedvalortarifa.valorTarifa}" >
+                    </p:inputText>
+                <h:commandButton action="#{tbDatosPersonalesController.agregarTenencia()}" id="agregarLoteButton" value="Agregar Lote">
+                            <f:ajax render="datalistLOTE idLotepa" execute="codigoLote areaTotalH areaTotalM areaRiegoM areaRiegoH idOrganizacionRiego idOvalo idComunidadLote idSector idAcequiaLote propietario estadoTierraS idMetodoRiego porcentajeRiego numeroAspersores idFrecuenciaRiego numeroDiasRiego horasTurno idTipoTarifa valorTarifa"/>
+                </h:commandButton>
+                </p:panelGrid>
+                </div>
+                <div style="width: 100%">
+                <p:panelGrid columns="2" style="width:100%">
+                        <p:dataTable editable="true" style="width: 100%" id="datalistLOTE" value="#{tbDatosPersonalesController.selectedfamilia.tbTenenciaTierraList }" 
+                                 var="item"
+                                 paginator="true"
+                                 selection="single"
+                                 rowKey="#{item.idTenenciaTierra}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Acequia"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLote.idAcequia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Propietario"/>
+                            </f:facet>
+                            <h:outputText value="#{item.propietario}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Estado"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoTierra}"/>
+                        </p:column>
+              
+                        </p:dataTable>
+                        </p:panelGrid>
+                </div>
+            </h:panelGroup>
+        </p:tab>
+        <p:tab title="III. Sistema de Producción">
+            <h:panelGroup id="display3">
+                <div class="form-group ui-md-3 ui-md-3" style="float:left; width: 25%;">  
+                <p:panelGrid id="panellote" columns="2" rendered="#{tbDatosPersonalesController.selectedlote != null}">
+                <f:facet name="header"><p:outputLabel value="SISTEMA DE PRODUCCIÓN AGRÍCOLA"/></f:facet>
+                <p:outputLabel value="Lote:" for="idLotepa" />
+                <p:selectOneMenu id="idLotepa" value="#{tbDatosPersonalesController.selectedproduccionagricola.idLote}" >
+                    <f:selectItem itemLabel="Seleccione uno" itemValue="" /> 
+                    <f:selectItems value="#{tbDatosPersonalesController.selectedfamilia.tbTenenciaTierraList}"
+                                   var="idTenenciaItem"
+                                   itemValue="#{idTenenciaItem.idLote}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Cultivo" for="idCultivo" />
+                <p:selectOneMenu id="idCultivo" value="#{tbDatosPersonalesController.selectedproduccionagricola.idCultivo}" >
+                    <f:selectItems value="#{tbCultivoController.itemsAvailableSelectOne}"
+                                   var="idCultivoItem"
+                                   itemValue="#{idCultivoItem}"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Superficie (m2):" for="superficiepa" />
+                <p:inputText id="superficiepa" value="#{tbDatosPersonalesController.selectedproduccionagricola.superficieCultivo}"/>  
+                
+
+                <h:commandButton action="#{tbDatosPersonalesController.agregarProduccionAgricola()}" id="agregarPaButton" value="Agregar Producción">
+                    <f:ajax render="datalistProduccionAgricola" execute="idLotepa idCultivo superficiepa"/>
+                </h:commandButton>
+                <p:commandButton actionListener="#{tbDatosPersonalesController.agregarProduccionAgricola}" value="#{bundle.Save}" update="datalistProduccionAgricola" oncomplete=""/>
+                </p:panelGrid>
+                <div style="width: 100%">
+                <p:panelGrid columns="2" style="width:100%">
+                    <p:dataTable editable="true" style="width: 100%" id="datalistProduccionAgricola" value="#{tbDatosPersonalesController.selectedproduccionagricola.idLote.tbProduccionAgricolaList}" 
+                                 var="item"
+                                 paginator="true"
+                                 selection="single"
+                                 rowKey="#{item.idProduccionAgricola}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Cultivo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCultivo.tipoCultivo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Superficie"/>
+                            </f:facet>
+                            <h:outputText value="#{item.superficieCultivo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Área total"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLote.areaTotalM}"/>
+                        </p:column>
+                        </p:dataTable>
+                        </p:panelGrid>
+                </div>
+                </div>
+                <div class="form-group ui-md-3 ui-md-3" style="float:left; width: 25%;">
+                    <p:panelGrid id="panelPP" columns="2" rendered="#{tbDatosPersonalesController.selectedlote != null}">
+                    <f:facet name="header"><p:outputLabel value="SISTEMA DE PRODUCCIÓN PECUARIA"/></f:facet>
+                        <p:outputLabel value="Especie" for="idAnimalPecuario" />
+                        <p:selectOneMenu id="idAnimalPecuario" value="#{tbDatosPersonalesController.selectedproduccionpecuario.idAnimalPecuario}" >
+                            <f:selectItems value="#{tbAnimalPecuarioController.itemsAvailableSelectOne}"
+                                           var="idAnimalPecuarioItem"
+                                           itemValue="#{idAnimalPecuarioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Número" for="numAnimal" />
+                        <p:inputText id="numAnimal" value="#{tbDatosPersonalesController.selectedproduccionpecuario.numAnimal}" title="#{bundle.CreateTbProduccionPecuarioTitle_numAnimal}" />
+                        <h:commandButton action="#{tbDatosPersonalesController.agregarProduccionPecuaria()}" id="agregarPpButton" value="Agregar Producción2">
+                            <f:ajax render="datalistProduccionPecuaria" execute="idAnimalPecuario numAnimal"/>
+                        </h:commandButton>
+                    </p:panelGrid>
+                <div style="width: 100%">
+                <p:panelGrid columns="2" style="width:100%">
+                    <p:dataTable editable="true" style="width: 100%" id="datalistProduccionPecuaria" value="#{tbDatosPersonalesController.selectedfamilia.tbProduccionPecuarioList }" 
+                                 var="itempp"
+                                 paginator="true"
+                                 selection="single"
+                                 rowKey="#{itempp.idProduccionPecuario}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Especie"/>
+                            </f:facet>
+                            <h:outputText value="#{itempp.idAnimalPecuario.nomAnimal}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Número"/>
+                            </f:facet>
+                            <h:outputText value="#{itempp.numAnimal}"/>
+                        </p:column>
+                    </p:dataTable>
+                 
+                </p:panelGrid>
+                </div>
+                </div>
+                <div class="form-group ui-md-3 ui-md-3" style="float:left; width: 25%;">
+                    <p:panelGrid id="panelIG" columns="2" rendered="#{tbDatosPersonalesController.selectedlote != null}">
+                    <f:facet name="header"><p:outputLabel value="INVENTARIO DE GANADO"/></f:facet>
+                        <p:outputLabel value="Categoría" for="idCategoriaig" />
+                        <p:selectOneMenu id="idCategoriaig" value="#{tbDatosPersonalesController.selectedinventarioganado.idGanado}" >
+                            <f:selectItems value="#{tbGanadoController.itemsAvailableSelectOne}"
+                                           var="idGanadoItem"
+                                           itemValue="#{idGanadoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Número" for="numGanado" />
+                        <p:inputText id="numGanado" value="#{tbDatosPersonalesController.selectedinventarioganado.numGanado}" title="#{bundle.CreateTbProduccionPecuarioTitle_numAnimal}" />
+                        <h:commandButton action="#{tbDatosPersonalesController.agregarInventarioGanado()}" id="agregarIgButton" value="Agregar Producción3">
+                            <f:ajax render="datalistInventarioGanado" execute="idCategoriaig numGanado"/>
+                        </h:commandButton>
+                    </p:panelGrid>
+                <div style="width: 100%">
+                <p:panelGrid columns="2" style="width:100%">
+                    <p:dataTable editable="true" style="width: 100%" id="datalistInventarioGanado" value="#{tbDatosPersonalesController.selectedfamilia.tbInventarioGanadoList }" 
+                                 var="item"
+                                 paginator="true"
+                                 selection="single"
+                                 rowKey="#{item.idInventarioGanado}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,15,20"
+                                 >
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Categoría"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idGanado.tipoGanado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Número"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numGanado}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <p:outputLabel value="Producción diaria de leche" for="pdiarialeche" />
+                    <p:inputText id="pdiarialeche" value="#{tbDatosPersonalesController.selectedproduccionleche.produccionDiariaLeche}" title="#{bundle.CreateTbProduccionPecuarioTitle_numAnimal}" />
+                </p:panelGrid>
+                </div>
+                </div>
+                <h:commandButton value="Crear" action="#{tbDatosConyugueController.create()}">
+                        <f:actionListener binding="#{tbDatosPersonalesController.create()}" />
+                        <f:actionListener binding="#{tbFamiliaController.create()}" />
+                        <f:actionListener binding="#{tbTenenciaTierraController.create()}" />
+                    </h:commandButton>
+            </h:panelGroup>
+        </p:tab>
+    </p:tabView>
+            </h:form>
+</ui:define>
+        
+    </ui:composition>
+</html>
+

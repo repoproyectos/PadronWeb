@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbRolesFuncionesCreateDlg" widgetVar="TbRolesFuncionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbRolesFuncionesTitle}">
+            <h:form id="TbRolesFuncionesCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbRolesFuncionesController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbRolesFuncionesLabel_idRolesFunciones}" for="idRolesFunciones" />
+                        <p:inputText id="idRolesFunciones" value="#{tbRolesFuncionesController.selected.idRolesFunciones}" title="#{bundle.CreateTbRolesFuncionesTitle_idRolesFunciones}" required="true" requiredMessage="#{bundle.CreateTbRolesFuncionesRequiredMessage_idRolesFunciones}"/>
+                        <p:outputLabel value="#{bundle.CreateTbRolesFuncionesLabel_estado}" for="estado" />
+                        <p:selectBooleanCheckbox id="estado" value="#{tbRolesFuncionesController.selected.estado}" />
+                        <p:outputLabel value="#{bundle.CreateTbRolesFuncionesLabel_idFuncion}" for="idFuncion" />
+                        <p:selectOneMenu id="idFuncion" value="#{tbRolesFuncionesController.selected.idFuncion}" >
+                            <f:selectItems value="#{tbFuncionController.itemsAvailableSelectOne}"
+                                           var="idFuncionItem"
+                                           itemValue="#{idFuncionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbRolesFuncionesLabel_idTipoUsuario}" for="idTipoUsuario" />
+                        <p:selectOneMenu id="idTipoUsuario" value="#{tbRolesFuncionesController.selected.idTipoUsuario}" >
+                            <f:selectItems value="#{tbTipoUsuarioController.itemsAvailableSelectOne}"
+                                           var="idTipoUsuarioItem"
+                                           itemValue="#{idTipoUsuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbRolesFuncionesController.create}" value="#{bundle.Save}" update="display,:TbRolesFuncionesListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbRolesFuncionesCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbRolesFuncionesCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

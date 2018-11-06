@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbPorcentajeRiegoCreateDlg" widgetVar="TbPorcentajeRiegoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTbPorcentajeRiegoTitle}">
+            <h:form id="TbPorcentajeRiegoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbPorcentajeRiegoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateTbPorcentajeRiegoLabel_idPorcentajeRiego}" for="idPorcentajeRiego" />
+                        <p:inputText id="idPorcentajeRiego" value="#{tbPorcentajeRiegoController.selected.idPorcentajeRiego}" title="#{bundle.CreateTbPorcentajeRiegoTitle_idPorcentajeRiego}" required="true" requiredMessage="#{bundle.CreateTbPorcentajeRiegoRequiredMessage_idPorcentajeRiego}"/>
+                        <p:outputLabel value="#{bundle.CreateTbPorcentajeRiegoLabel_porcentaje}" for="porcentaje" />
+                        <p:inputText id="porcentaje" value="#{tbPorcentajeRiegoController.selected.porcentaje}" title="#{bundle.CreateTbPorcentajeRiegoTitle_porcentaje}" />
+                        <p:outputLabel value="#{bundle.CreateTbPorcentajeRiegoLabel_numAspersoresSitio}" for="numAspersoresSitio" />
+                        <p:inputText id="numAspersoresSitio" value="#{tbPorcentajeRiegoController.selected.numAspersoresSitio}" title="#{bundle.CreateTbPorcentajeRiegoTitle_numAspersoresSitio}" />
+                        <p:outputLabel value="#{bundle.CreateTbPorcentajeRiegoLabel_fechaReg}" for="fechaReg" />
+                        <p:calendar id="fechaReg" pattern="MM/dd/yyyy" value="#{tbPorcentajeRiegoController.selected.fechaReg}" title="#{bundle.EditTbPorcentajeRiegoTitle_fechaReg}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateTbPorcentajeRiegoLabel_idLote}" for="idLote" />
+                        <p:selectOneMenu id="idLote" value="#{tbPorcentajeRiegoController.selected.idLote}" >
+                            <f:selectItems value="#{tbLoteController.itemsAvailableSelectOne}"
+                                           var="idLoteItem"
+                                           itemValue="#{idLoteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbPorcentajeRiegoLabel_idMetodoRiego}" for="idMetodoRiego" />
+                        <p:selectOneMenu id="idMetodoRiego" value="#{tbPorcentajeRiegoController.selected.idMetodoRiego}" >
+                            <f:selectItems value="#{tbMetodoRiegoController.itemsAvailableSelectOne}"
+                                           var="idMetodoRiegoItem"
+                                           itemValue="#{idMetodoRiegoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateTbPorcentajeRiegoLabel_idTipoAspersor}" for="idTipoAspersor" />
+                        <p:selectOneMenu id="idTipoAspersor" value="#{tbPorcentajeRiegoController.selected.idTipoAspersor}" >
+                            <f:selectItems value="#{tbTipoAspersorController.itemsAvailableSelectOne}"
+                                           var="idTipoAspersorItem"
+                                           itemValue="#{idTipoAspersorItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbPorcentajeRiegoController.create}" value="#{bundle.Save}" update="display,:TbPorcentajeRiegoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TbPorcentajeRiegoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbPorcentajeRiegoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

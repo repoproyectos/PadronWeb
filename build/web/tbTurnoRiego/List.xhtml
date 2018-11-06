@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTbTurnoRiegoTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="TbTurnoRiegoListForm">
+                <p:panel header="#{bundle.ListTbTurnoRiegoTitle}">
+                    <p:dataTable id="datalist" value="#{tbTurnoRiegoController.items}" var="item"
+                                 selectionMode="single" selection="#{tbTurnoRiegoController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idTurnoRiego}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbTurnoRiegoTitle_idTurnoRiego}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTurnoRiego}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbTurnoRiegoTitle_numDias}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numDias}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbTurnoRiegoTitle_horasTurno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.horasTurno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbTurnoRiegoTitle_fechaReg}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaReg}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbTurnoRiegoTitle_idFrecuenciaRiego}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFrecuenciaRiego}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTbTurnoRiegoTitle_idLote}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLote}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tbTurnoRiegoController.prepareCreate}" update=":TbTurnoRiegoCreateForm" oncomplete="PF('TbTurnoRiegoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TbTurnoRiegoViewForm" oncomplete="PF('TbTurnoRiegoViewDialog').show()" disabled="#{empty tbTurnoRiegoController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TbTurnoRiegoEditForm" oncomplete="PF('TbTurnoRiegoEditDialog').show()" disabled="#{empty tbTurnoRiegoController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tbTurnoRiegoController.destroy}" update=":growl,datalist" disabled="#{empty tbTurnoRiegoController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

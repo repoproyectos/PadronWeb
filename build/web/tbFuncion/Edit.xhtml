@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TbFuncionEditDlg" widgetVar="TbFuncionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTbFuncionTitle}">
+            <h:form id="TbFuncionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tbFuncionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTbFuncionLabel_idFuncion}" for="idFuncion" />
+                        <p:inputText id="idFuncion" value="#{tbFuncionController.selected.idFuncion}" title="#{bundle.EditTbFuncionTitle_idFuncion}" required="true" requiredMessage="#{bundle.EditTbFuncionRequiredMessage_idFuncion}"/>
+                        <p:outputLabel value="#{bundle.EditTbFuncionLabel_funcion}" for="funcion" />
+                        <p:inputText id="funcion" value="#{tbFuncionController.selected.funcion}" title="#{bundle.EditTbFuncionTitle_funcion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{tbFuncionController.update}" value="#{bundle.Save}" update="display,:TbFuncionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TbFuncionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TbFuncionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
